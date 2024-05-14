@@ -168,6 +168,10 @@ alias v='nvim' # default Neovim config
 alias vl='NVIM_APPNAME=lvim nvim' # LunarVim (not working currently)
 alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart (config folowing TJ DeVries Tutorial)
 
+# git aliases
+alias ga='git add .'
+alias gcommit='git commit -m'
+
 # Deno
 export DENO_INSTALL="/Users/nelsonfleig/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
