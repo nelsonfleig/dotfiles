@@ -167,6 +167,7 @@ alias v='nvim' # default Neovim config
 alias vl='NVIM_APPNAME=lvim nvim' # LunarVim (not working currently)
 alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart (config folowing TJ DeVries Tutorial)
 alias vt='NVIM_APPNAME=nvim-typecraft nvim' # Config following Typecraft Tutorial
+alias vj='NVIM_APPNAME=nvim-joseanmartinez nvim' # Config following Josean Martinez Tutorial
 
 # git aliases
 alias ga='git add .'
