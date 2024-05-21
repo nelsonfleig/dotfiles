@@ -177,4 +177,4 @@ export DENO_INSTALL="/Users/nelsonfleig/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 # My aliases
-alias cls='colorls'
+alias ls='colorls'
