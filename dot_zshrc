@@ -172,6 +172,7 @@ alias vj='NVIM_APPNAME=nvim-joseanmartinez nvim' # Config following Josean Marti
 # git aliases
 alias ga='git add .'
 alias gcommit='git commit -m'
+alias gac='ga && gcommit'
 
 # Deno
 export DENO_INSTALL="/Users/nelsonfleig/.deno"
