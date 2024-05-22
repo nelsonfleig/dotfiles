@@ -29,15 +29,14 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 # zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
+# Start Zsh to trigger any setup that would run when it's first opened
+~/.local/bin/chezmoi --source ~/.dotfiles init --apply
 
 # zoxide (cd replacement)
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 
 # fzf (required by zoxide)
-sudo apt install fzf
-
-# Start Zsh to trigger any setup that would run when it's first opened
-~/.local/bin/chezmoi --source ~/.dotfiles init --apply
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # Source .zshrc
 source ~/.zshrc
