@@ -70,12 +70,12 @@ fi
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 # y | ~/.fzf/install --no-bash --no-fish
 
-install_lunarvim
-maintain_lunarvim_plugins
-
 # Start Zsh to trigger any setup that would run when it's first opened
 ~/.local/bin/chezmoi --source ~/.dotfiles init --apply
 
 # Source .zshrc
-source ~/.zshrc
+# source ~/.zshrc
+
+install_lunarvim
+maintain_lunarvim_plugins
 
