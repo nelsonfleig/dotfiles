@@ -14,5 +14,14 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Set default shell to zsh
 sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
 
+# Reset OMZ
+if [ ! -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
+    rm -rf $HOME/.oh-my-zsh
+    ZSH= sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+# Install Powerlevel10K
+$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k)
+
 # Start Zsh to trigger any setup that would run when it's first opened
 ~/.local/bin/chezmoi --source ~/.dotfiles init --apply --verbose
