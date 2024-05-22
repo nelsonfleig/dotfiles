@@ -71,7 +71,7 @@ if [ -d "$HOME/.fzf" ]; then
   rm -rf $HOME/.fzf
 fi
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-y | ~/.fzf/install --no-bash --no-fish
+# y | ~/.fzf/install --no-bash --no-fish
 
 # Source .zshrc
 source ~/.zshrc
