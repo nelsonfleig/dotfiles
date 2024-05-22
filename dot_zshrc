@@ -81,11 +81,15 @@ plugins=(
 	git
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+	zoxide
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+# Zoxide cmd override
+ZOXIDE_CMD_OVERRIDE=cd
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -180,8 +184,4 @@ fi
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
-
-# Zoixide (must be last)
-eval "$(zoxide init --cmd cd zsh)"
-
 
