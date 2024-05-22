@@ -183,8 +183,10 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 # MacOS specific
 if [[ "$(uname)" == "Darwin" ]]; then
   alias ls='colorls -l --sd'
+  # Set up fzf key bindings and fuzzy completion
+  source <(fzf --zsh)
 fi
 
-# Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+# Temporary (these will probably be removed after setup is complete)
+alias gcsdot='gh codespace create -R roverdotcom/web --status -d dotfiles-nelson'
 
