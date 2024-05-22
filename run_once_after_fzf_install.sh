@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [[ "$(uname)" == "Linux" ]]; then
   # fzf (required by zoxide)
   if [ -d "$HOME/.fzf" ]; then

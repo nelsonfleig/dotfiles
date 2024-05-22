@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Lunarvim install functions
 install_lunarvim()
 {
