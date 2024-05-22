@@ -34,8 +34,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 
 # fzf (required by zoxide)
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+sudo apt install fzf
 
 # Start Zsh to trigger any setup that would run when it's first opened
 ~/.local/bin/chezmoi --source ~/.dotfiles init --apply
