@@ -1,8 +1,8 @@
-[user]	
+[user]
   name = Nelson Fleig
-{{ if ne .chezmoi.os "linux" }}
+{{- if ne .chezmoi.os "linux" }}
   email = {{ .email }}
-{{ end }}
+{{- end }}
 [pull]
   rebase = true
 [push]
@@ -10,8 +10,8 @@
 [init]
   defaultBranch = main
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credentia
