@@ -185,6 +185,9 @@ if [[ "$(uname)" == "Darwin" ]]; then
   alias ls='colorls -l --sd'
   # Set up fzf key bindings and fuzzy completion
   source <(fzf --zsh)
+elif [[ "$(uname)" == "Linux" ]]; then
+  source ~/.fzf/shell/completion.zsh
+  source ~/.fzf/shell/key-bindings.zsh
 fi
 
 # Temporary (these will probably be removed after setup is complete)

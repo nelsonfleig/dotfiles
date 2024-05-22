@@ -37,7 +37,6 @@ curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh 
 
 # fzf (required by zoxide)
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-y | ~/.fzf/install
 
 # Source .zshrc
 source ~/.zshrc
