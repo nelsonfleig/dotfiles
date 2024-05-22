@@ -1,6 +1,8 @@
 [user]	
   name = Nelson Fleig
+{{ if ne .chezmoi.os "linux" }}
   email = {{ .email }}
+{{ end }}
 [pull]
   rebase = true
 [push]
