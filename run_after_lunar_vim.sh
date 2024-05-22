@@ -31,8 +31,10 @@ maintain_lunarvim_plugins()
 }
 
 run_on_linux_only() {
-  install_lunarvim
-  maintain_lunarvim_plugins
+  if [[ "$(uname)" == "Linux" ]]; then
+    install_lunarvim
+    maintain_lunarvim_plugins
+  fi
 }
 
 run_on_linux_only
