@@ -4,9 +4,6 @@
 # exit on error and print each command
 set -euxo pipefail
 
-# Set github user to rover email
-git config --global user.email "nelson.fleig@rover.com"
-
 # ~/.dotfiles ==> directory where this script is located
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 [[ -e ~/.dotfiles ]] || ln -s "$DIR" ~/.dotfiles
