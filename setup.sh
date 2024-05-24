@@ -34,6 +34,3 @@ curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh 
 
 # Start Zsh to trigger any setup that would run when it's first opened
 ~/.local/bin/chezmoi --source ~/.dotfiles init --apply
-
-# Source .zshrc
-source ~/.zshrc
