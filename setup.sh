@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
-# This script should mainly be used by GitHub Codespaces
+# This script should mainly be used by GitHub Codespaces owned by Rover.com
 
 # exit on error and print each command
 set -euxo pipefail
+
+# Set github user to rover email
+git config user.email "nelson.fleig@rover.com"
 
 # ~/.dotfiles ==> directory where this script is located
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
