@@ -181,10 +181,6 @@ alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart (config folowing TJ DeVr
 alias vt='NVIM_APPNAME=nvim-typecraft nvim' # Config following Typecraft Tutorial
 alias vj='NVIM_APPNAME=nvim-joseanmartinez nvim' # Config following Josean Martinez Tutorial
 
-# Deno
-export DENO_INSTALL="/Users/nelsonfleig/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-
 # MacOS specific
 if [[ "$(uname)" == "Darwin" ]]; then
   alias ls='colorls -l --sd'
