@@ -188,7 +188,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
   # Set up fzf key bindings and fuzzy completion
   source <(fzf --zsh)
 elif [ -n "${CODESPACES}" ]; then
-  # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
   source ~/.fzf/shell/completion.zsh
   source ~/.fzf/shell/key-bindings.zsh
 fi
