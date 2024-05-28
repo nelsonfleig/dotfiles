@@ -191,6 +191,7 @@ elif [ -n "${CODESPACES}" ]; then
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
   source ~/.fzf/shell/completion.zsh
   source ~/.fzf/shell/key-bindings.zsh
+  source ~/.bash_aliases
 fi
 
 # Temporary (these will probably be removed after setup is complete)
