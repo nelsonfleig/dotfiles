@@ -195,5 +195,6 @@ elif [ -n "${CODESPACES}" ]; then
 fi
 
 # Temporary (these will probably be removed after setup is complete)
-alias gcsdot='gh codespace create -R roverdotcom/web --status -d dotfiles-nelson'
+alias ghcsdot='gh codespace create -R roverdotcom/web --status -d dotfiles-nelson'
+alias ghcsnew='gh codespace create -R roverdotcom/web --status -d'
 
