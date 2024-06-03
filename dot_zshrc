@@ -103,8 +103,8 @@ export LANG=en_US.UTF-8
 #   export EDITOR='nvim'
 # fi
 
-# Set editor to nvim everywhere (check if nvim is available beforehand before copying this file)
-export EDITOR='nvim'
+# Set editor to vim everywhere (nvim may not be available so we use vim)
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
