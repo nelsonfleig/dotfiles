@@ -154,6 +154,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # Python3
 # alias python="python3"
 # alias pip="pip3"
+alias srcvenv='source .venv/bin/activate' # source venv in current directory
 
 # android
 export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -186,7 +187,8 @@ elif [ -n "${CODESPACES}" ]; then
   source ~/.bash_aliases
 fi
 
-# Temporary (these will probably be removed after setup is complete)
+
+# Helpful alias
 alias csdot='gh codespace create -R roverdotcom/web --status -d dotfiles-nelson'
 alias csnew='gh codespace create -R roverdotcom/web --status -d'
-
+alias srczsh='source ~/.zshrc'
