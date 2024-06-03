@@ -1,0 +1,85 @@
+" Keep 1000 items in the history.
+set history=1000
+
+" show the cursor position
+set ruler
+
+" highlight cursor line and active line number
+set cursorline
+
+" show incomplete commands.
+set showcmd
+
+" shows a menu when using tab completion
+set wildmenu
+
+set scrolloff=5
+
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" turn on line numbering
+set number
+set relativenumber
+
+" Backup before overwriting. Default suffix is ~
+"set backup
+"set bex=_bkp
+
+" Linebreak
+set linebreak
+
+" Use spaces instead of tabs
+set expandtab
+
+" Enable smart tabs
+set smarttab
+
+" Make a tab equal to 2 spaces
+set shiftwidth=2
+set tabstop=2
+
+" Indentation
+set autoindent
+set smartindent
+
+" Adapt to color scheme
+"set bg=light
+set bg=dark
+
+" Color scheme
+set termguicolors
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
+"let g:tokyonight_transparent_background = 0
+colorscheme tokyonight
+"colorscheme onedark
+
+" Airline colorscheme
+let g:airline_theme = "tokyonight"
+
+" You can save color schemes in:
+" /home/nelsonfleig/.vim/colors
+
+" Syntax highlighting
+syntax on
+
+"map KEY KEYSTROKES
+map <F2> iHi<CR>My Name is<CR>What<CR>My name is<CR>Who<CR>Slim Shady<ESC>
+
+" Navigate windows
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" NERDTree
+noremap <leader>e :NERDTreeToggle<CR>
+
+" Leader (must be set before referencing, else will use default of "\")
+let mapleader=" "
+map <leader>w :w!<CR>
+
+
