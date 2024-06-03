@@ -135,7 +135,7 @@ else
     if [ -f "/Users/nelsonfleig/anaconda3/etc/profile.d/conda.sh" ]; then
         . "/Users/nelsonfleig/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/nelsonfleig/anaconda3/bin:$PATH"
+        #export PATH="/Users/nelsonfleig/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -181,6 +181,7 @@ alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart (config folowing TJ DeVr
 alias vt='NVIM_APPNAME=nvim-typecraft nvim' # Config following Typecraft Tutorial
 alias vj='NVIM_APPNAME=nvim-joseanmartinez nvim' # Config following Josean Martinez Tutorial
 alias vc='NVIM_APPNAME=nvim-nvchad nvim' # NvChad config
+alias vs='NVIM_APPNAME=nvim-starter-kit nvim' # Nerd Signals starter config - from youtube
 
 # MacOS specific
 if [[ "$(uname)" == "Darwin" ]]; then
@@ -195,6 +196,6 @@ elif [ -n "${CODESPACES}" ]; then
 fi
 
 # Temporary (these will probably be removed after setup is complete)
-alias ghcsdot='gh codespace create -R roverdotcom/web --status -d dotfiles-nelson'
-alias ghcsnew='gh codespace create -R roverdotcom/web --status -d'
+alias csdot='gh codespace create -R roverdotcom/web --status -d dotfiles-nelson'
+alias csnew='gh codespace create -R roverdotcom/web --status -d'
 
