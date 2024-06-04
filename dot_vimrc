@@ -77,11 +77,10 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" NERDTree
-noremap <leader>e :NERDTreeToggle<CR>
-
 " Leader (must be set before referencing, else will use default of "\")
 let mapleader=" "
 map <leader>w :w!<CR>
+noremap <leader>e :NERDTreeToggle<CR>
+
 
 
