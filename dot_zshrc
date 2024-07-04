@@ -142,7 +142,13 @@ esac
 # pnpm end
 
 # java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home" # Installed along with Android Studio
+
+# rbenv initialization
+export RBENV_ROOT="$HOME/.rbenv"
+[[ -d $RBENV_ROOT/bin ]] && export PATH="$RBENV_ROOT/bin:$PATH"
+eval "$(rbenv init -)"
 
 # bun completions
 [ -s "/Users/nelsonfleig/.bun/_bun" ] && source "/Users/nelsonfleig/.bun/_bun"
