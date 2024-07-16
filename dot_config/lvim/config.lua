@@ -8,7 +8,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "python"
 }
 
--- TODO: Check if it is enough to just use flake8
+-- TODO: Check if it is enough to just use flake8 or black as formatter
 -- local formatters = require("lvim.lsp.null-ls.formatters")
 -- formatters.setup { { name = "black" } }
 
@@ -35,7 +35,6 @@ lvim.plugins = {
       { ",v", "<cmd>VenvSelect<cr>" },
     },
   },
-
   {
     "f-person/git-blame.nvim",
     event = "BufRead",
