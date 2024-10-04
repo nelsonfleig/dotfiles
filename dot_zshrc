@@ -187,6 +187,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
   [[ -d $RBENV_ROOT/bin ]] && export PATH="$RBENV_ROOT/bin:$PATH"
   eval "$(rbenv init -)"
 elif [ -n "${CODESPACES}" ]; then
+	export SHELL=/bin/zsh
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
   source ~/.fzf/shell/completion.zsh
   source ~/.fzf/shell/key-bindings.zsh
