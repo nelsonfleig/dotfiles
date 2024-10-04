@@ -1,7 +1,11 @@
 #!/bin/zsh
 
-# if [ -n "${CODESPACES}" ]; then
+# Run codespace specific commands here
+if [ -n "${CODESPACES}" ]; then
   # git config --global user.email "nelson.fleig@rover.com"
-# fi
+
+  # change default shell to zsh
+  sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
+fi
 
 source ~/.zshrc
