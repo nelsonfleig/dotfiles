@@ -62,5 +62,9 @@ lvim.builtin.which_key.mappings["C"] = {
   c = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Choose Env" }
 }
 
+require("mason").setup {}
+require("mason-lspconfig").setup { ensure_installed = { "pyright", "flake8" } }
+require("lspconfig").pyright.setup {}
+
 vim.opt.relativenumber = true
 vim.opt.shell = "/bin/zsh"
