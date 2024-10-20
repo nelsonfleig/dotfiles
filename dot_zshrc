@@ -171,6 +171,7 @@ alias vt='NVIM_APPNAME=nvim-typecraft nvim' # Config following Typecraft Tutoria
 alias vj='NVIM_APPNAME=nvim-joseanmartinez nvim' # Config following Josean Martinez Tutorial
 alias vc='NVIM_APPNAME=nvim-nvchad nvim' # NvChad config
 alias vs='NVIM_APPNAME=nvim-starter-kit nvim' # Nerd Signals starter config - from youtube
+alias vh='NVIM_APPNAME=nvim-vhyrro nvim' # Config following Vhyrro's YT series
 
 # MacOS specific
 if [[ "$(uname)" == "Darwin" ]]; then
