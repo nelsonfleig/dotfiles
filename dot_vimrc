@@ -8,7 +8,7 @@ endif
 call plug#begin()
 
 " Colorschemes
-Plug 'catppuccin/vim', { 'as': 'catppuccin', 'do': 'colorscheme catppuccin' } 
+Plug 'catppuccin/vim', { 'as': 'catppuccin' } 
 Plug 'ghifarit53/tokyonight-vim'
 
 " Tabline
@@ -21,6 +21,22 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sheerun/vim-polyglot'
 
 call plug#end()
+
+" Function to set plugin after they finish loading and vim enters
+function MyVimEnterSetup()
+  " Tokyonight
+  "let g:tokyonight_style = 'night' " available: night, storm
+  "let g:tokyonight_enable_italic = 1
+  "let g:tokyonight_transparent_background = 0
+  "colorscheme tokyonight
+  "let g:airline_theme = "tokyonight"
+
+  " Catppuccin 
+  colorscheme catppuccin_mocha
+  let g:airline_theme = "catppuccin_mocha"
+  " You can save color schemes in:
+  " /home/nelsonfleig/.vim/colors
+endfunction
 
 " Keep 1000 items in the history.
 set history=1000
@@ -75,21 +91,6 @@ set bg=dark
 
 " Color scheme
 set termguicolors
-" Tokyonight
-"let g:tokyonight_style = 'night' " available: night, storm
-"let g:tokyonight_enable_italic = 1
-"let g:tokyonight_transparent_background = 0
-"colorscheme tokyonight
-
-" Catppuccin (loaded in the Plug post install hook)
-" colorscheme catppuccin_mocha
-
-" Airline colorscheme
-"let g:airline_theme = "tokyonight"
-let g:airline_theme = "catppuccin_mocha"
-
-" You can save color schemes in:
-" /home/nelsonfleig/.vim/colors
 
 " Syntax highlighting
 syntax on
@@ -108,5 +109,5 @@ let mapleader=" "
 map <leader>w :w!<CR>
 noremap <leader>e :NERDTreeToggle<CR>
 
-
-
+" Run post plugin install function on VimEnter
+autocmd VimEnter * ++nested  call MyVimEnterSetup()
