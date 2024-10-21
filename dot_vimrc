@@ -8,7 +8,7 @@ endif
 call plug#begin()
 
 " Colorschemes
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+Plug 'catppuccin/vim', { 'as': 'catppuccin', 'do': 'colorscheme catppuccin' } 
 Plug 'ghifarit53/tokyonight-vim'
 
 " Tabline
@@ -81,8 +81,8 @@ set termguicolors
 "let g:tokyonight_transparent_background = 0
 "colorscheme tokyonight
 
-" Catppuccin
-colorscheme catppuccin_mocha
+" Catppuccin (loaded in the Plug post install hook)
+" colorscheme catppuccin_mocha
 
 " Airline colorscheme
 "let g:airline_theme = "tokyonight"
