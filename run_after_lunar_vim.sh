@@ -28,7 +28,7 @@ maintain_lunarvim_plugins()
   $lvim --headless "+TSUpdateSync typescript" +qa
   $lvim --headless "+TSUpdateSync json" +qa
   $lvim --headless "+TSUpdateSync bash" +qa
-  $livm --headless "+MasonInstall pyright flake8" +qa
+  $lvim --headless "+MasonInstall pyright flake8" +qa
 }
 
 run_on_linux_only() {
