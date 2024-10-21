@@ -5,6 +5,13 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" Using Plug
+" Run 'do' to run shell commands with quotes, vim commands (:), or a callback
+" Examples:
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
 call plug#begin()
 
 " Colorschemes
