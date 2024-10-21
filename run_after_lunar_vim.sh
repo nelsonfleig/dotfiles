@@ -32,7 +32,7 @@ maintain_lunarvim_plugins()
 }
 
 run_on_linux_only() {
-  if [[ "$(uname)" == "Linux" ]]; then
+  if [ -n "${CODESPACES}" ]; then
     install_lunarvim
     maintain_lunarvim_plugins
   fi
