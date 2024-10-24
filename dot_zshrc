@@ -201,3 +201,7 @@ fi
 alias csdot='gh codespace create -R roverdotcom/web --status -d dotfiles-nelson'
 alias csnew='gh codespace create -R roverdotcom/web --status -d'
 alias srczsh='source ~/.zshrc'
+create-staging() {
+  git push -f origin $(git rev-parse --abbrev-ref HEAD):staging-$1
+}
+
