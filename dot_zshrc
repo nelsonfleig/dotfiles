@@ -176,7 +176,7 @@ alias vd='NVIM_APPNAME=nvim-devaslife nvim' # Config following Devaslife's setup
 
 # MacOS specific
 if [[ "$(uname)" == "Darwin" ]]; then
-  alias ls='colorls -l --sd'
+#  alias ls='colorls -l --sd'
   # Set up fzf key bindings and fuzzy completion
   source <(fzf --zsh)
 
@@ -185,9 +185,11 @@ if [[ "$(uname)" == "Darwin" ]]; then
   export JAVA_HOME="/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home" # Installed along with Android Studio
 
   # rbenv initialization
-  export RBENV_ROOT="$HOME/.rbenv"
-  [[ -d $RBENV_ROOT/bin ]] && export PATH="$RBENV_ROOT/bin:$PATH"
-  eval "$(rbenv init -)"
+	if [ -d "$HOME/.rbenv" ]; then
+  	export RBENV_ROOT="$HOME/.rbenv"
+  	[[ -d $RBENV_ROOT/bin ]] && export PATH="$RBENV_ROOT/bin:$PATH"
+  	[ -f ~/.rbenv ] && eval "$(rbenv init -)"
+	fi
 elif [ -n "${CODESPACES}" ]; then
 	export SHELL=/bin/zsh
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
