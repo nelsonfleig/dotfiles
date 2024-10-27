@@ -109,5 +109,29 @@ require("lazy").setup({
             local lspconfig = require("lspconfig")
             lspconfig.clangd.setup({})
         end
-    }
+    },
+    {
+        "williamboman/mason.nvim",
+        config = function()
+            require("mason").setup()
+        end
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = { "mason.nvim" }, -- shorter syntax looks for plugin installed in `~/.local/shared`
+        config = function()
+            local lspconfig = require("mason-lspconfig")
+            lspconfig.setup({
+                ensure_installed = { "lua_ls", "clangd" },
+            })
+            lspconfig.setup_handlers {
+                -- The first entry (without a key) will be the default handler
+                -- and will be called for each installed server that doesn't have
+                -- a dedicated handler.
+                function (server_name) -- default handler (optional)
+                    require("lspconfig")[server_name].setup {}
+                end,
+            }
+        end
+    },
 })

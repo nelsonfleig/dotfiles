@@ -20,7 +20,7 @@ Plug 'ghifarit53/tokyonight-vim'
 
 " Tabline
 Plug 'vim-airline/vim-airline'
-" File Explorer
+" File Explorer (toggle with 
 Plug 'preservim/nerdtree'
 " Fuzzy file, buffer, mru, tag, etc finder
 Plug 'ctrlpvim/ctrlp.vim'
@@ -30,7 +30,7 @@ Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " Function to set plugin after they finish loading and vim enters
-function MyVimEnterSetup()
+function RunOnVimEnter()
   " Tokyonight
   let g:tokyonight_style = 'night' " available: night, storm
   "let g:tokyonight_enable_italic = 1
@@ -117,4 +117,4 @@ map <leader>w :w!<CR>
 noremap <leader>e :NERDTreeToggle<CR>
 
 " Run post plugin install function on VimEnter
-autocmd VimEnter * ++nested  call MyVimEnterSetup()
+autocmd VimEnter * ++nested  call RunOnVimEnter()
