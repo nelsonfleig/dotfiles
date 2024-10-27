@@ -9,5 +9,3 @@ if [ -n "${CODESPACES}" ]; then
 fi
 
 source ~/.zshrc
-tmux source-file ~/.config/tmux/tmux.conf
-
