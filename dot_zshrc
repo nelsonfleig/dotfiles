@@ -211,7 +211,7 @@ alias t='tmux'
 alias gc='gcmsg'
 alias csdot='gh codespace create -R roverdotcom/web --status -d dotfiles-nelson'
 alias csnew='gh codespace create -R roverdotcom/web --status -d'
-alias srczsh='source ~/.zshrc'
+alias sync='source ~/.zshrc'
 
 # For use in roverdotcom repos
 create-staging() {
