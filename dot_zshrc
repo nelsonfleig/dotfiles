@@ -177,6 +177,7 @@ alias vs='NVIM_APPNAME=nvim-starter-kit nvim' # Nerd Signals starter config - fr
 alias vh='NVIM_APPNAME=nvim-vhyrro nvim' # Config following Vhyrro's YT series
 alias vd='NVIM_APPNAME=nvim-devaslife nvim' # Config following Devaslife's setup from 11/23 on YT
 alias vp='NVIM_APPNAME=nvim-prime nvim' # Primeagen's config as of 12/2022 
+alias vn='NVIM_APPNAME=nvim-nelson nvim' # My config
 
 # MacOS specific
 if [[ "$(uname)" == "Darwin" ]]; then
