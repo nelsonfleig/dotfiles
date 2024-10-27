@@ -201,6 +201,7 @@ elif [ -n "${CODESPACES}" ]; then
   source ~/.fzf/shell/completion.zsh
   source ~/.fzf/shell/key-bindings.zsh
   source ~/.bash_aliases
+	tmux source-file ~/.config/tmux/tmux.conf
 fi
 
 
