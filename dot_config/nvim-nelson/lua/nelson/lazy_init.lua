@@ -20,6 +20,6 @@ vim.g.maplocalleader = "\\"
 
 require("lazy").setup({
     spec = "nelson.lazy",
-    install = { colorscheme = { "rose-pine-moon" } },
+    install = { colorscheme = { "tokyonight-night", "habamax" } },
     change_detection = { notify = false }
 })
