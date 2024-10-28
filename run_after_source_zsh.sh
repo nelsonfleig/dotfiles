@@ -6,6 +6,9 @@ if [ -n "${CODESPACES}" ]; then
 
   # change default shell to zsh
   sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
+
+  # copy tmux conf to $HOME to work with Codespace tmux version
+  cp ~/.config/tmux/tmux.conf ~/.tmux.conf
 fi
 
 source ~/.zshrc
