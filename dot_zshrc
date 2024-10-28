@@ -168,7 +168,7 @@ export PATH="$HOME/.local/bin":$PATH
 
 # vim configs (see https://michaeluloth.com/neovim-switch-configs/)
 alias v='nvim' # default Neovim config
-alias vn='NVIM_APPNAME=nvim-nelson nvim' # My config
+alias vn='NVIM_APPNAME=nvim-nelson nvim' # My always WIP config
 
 # Here for trying out other's configs. These may not all be included in my dotfiles
 alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart (config folowing TJ DeVries Tutorial)
