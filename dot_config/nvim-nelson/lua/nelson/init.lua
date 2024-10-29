@@ -1,2 +1,1 @@
-require("nelson.core")
-require("nelson.lazy")
+require("nelson.config")
