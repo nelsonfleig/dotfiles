@@ -63,9 +63,9 @@ vim.keymap.set("n", "Q", "<nop>")
 -- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- Open netrw in the current directory (here until I get a better file explorer)
--- vim.keymap.set("n", "<leader>e", ":Explore<CR>")   -- Open netrw in the current window
--- vim.keymap.set("n", "<leader>ve", ":Vexplore<CR>") -- Open netrw in a vertical split
--- vim.keymap.set("n", "<leader>se", ":Sexplore<CR>") -- Open netrw in a horizontal split
+vim.keymap.set("n", "<leader>e", ":Explore<CR>")   -- Open netrw in the current window
+vim.keymap.set("n", "<leader>ve", ":Vexplore<CR>") -- Open netrw in a vertical split
+vim.keymap.set("n", "<leader>se", ":Sexplore<CR>") -- Open netrw in a horizontal split
 
 -- Make current file executable
 -- vim.keymap.set("n", "<leader>fx", "<cmd>!chmod +x %<CR>", { silent = true })
