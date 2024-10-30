@@ -171,7 +171,8 @@ alias v='nvim' # default Neovim config
 alias vn='NVIM_APPNAME=nvim-nelson nvim' # My always WIP config
 
 # Here for trying out other's configs. These may not all be included in my dotfiles
-alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart (config folowing TJ DeVries Tutorial)
+alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart 
+alias vkm='NVIM_APPNAME=nvim-kickstart-modular nvim' # Kickstart Modular
 alias vt='NVIM_APPNAME=nvim-typecraft nvim' # Config following Typecraft Tutorial
 alias vj='NVIM_APPNAME=nvim-joseanmartinez nvim' # Config following Josean Martinez Tutorial
 alias vc='NVIM_APPNAME=nvim-nvchad nvim' # NvChad config

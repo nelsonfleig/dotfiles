@@ -9,7 +9,7 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
-require("nelson.config.keymaps")
 require("nelson.config.options")
+require("nelson.config.keymaps")
 require("nelson.config.autocmds")
 require("nelson.config.lazy")
