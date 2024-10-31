@@ -22,7 +22,6 @@ return {
         'yaml',
         'toml',
         'dockerfile',
-        'html',
         'css',
         'javascript',
         'typescript',
