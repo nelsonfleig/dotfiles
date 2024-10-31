@@ -24,7 +24,7 @@ preinstall_neovim_plugins() {
   v "+TSUpdateSync bash"
 
   # LSPs
-  v "+MasonInstall ts_ls pyright flake8"
+  v "+MasonInstall typescript-language-server pyright flake8"
 }
 
 run_on_codespaces_only() {
