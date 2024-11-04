@@ -171,6 +171,7 @@ alias v='nvim' # My more or less "fixed" config
 alias vn='NVIM_APPNAME=nvim-nelson nvim' # My "trying things out" config
 
 # Here for trying out other's configs. These may not all be included in my dotfiles
+alias vl='NVIM_APPNAME=nvim-lazy nvim' # LazyVim
 alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart 
 alias vm='NVIM_APPNAME=nvim-kickstart-modular nvim' # Kickstart Modular
 alias vt='NVIM_APPNAME=nvim-typecraft nvim' # Config following Typecraft Tutorial
