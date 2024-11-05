@@ -24,6 +24,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'christoomey/vim-tmux-navigator',
   { import = 'nelson.plugins' },
 }, {
   install = { colorscheme = { 'tokyonight-night', 'habamax' } },

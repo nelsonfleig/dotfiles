@@ -26,6 +26,8 @@ Plug 'preservim/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 " Language pack for multiple languages
 Plug 'sheerun/vim-polyglot'
+" Seamlessly switch between vim and tmux panes
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
