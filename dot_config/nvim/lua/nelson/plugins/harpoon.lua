@@ -1,28 +1,43 @@
 return {
   'theprimeagen/harpoon',
-  config = function()
-    local mark = require 'harpoon.mark'
-    local ui = require 'harpoon.ui'
+  branch = 'harpoon2',
+  dependencies = { 'nvim-lua/plenary.nvim' },
+  opts = {
+    menu = {
+      width = vim.api.nvim_win_get_width(0) - 4,
+    },
+    settings = {
+      save_on_toggle = true,
+    },
+  },
+  keys = function()
+    local keys = {
+      {
+        '<leader>hH',
+        function()
+          require('harpoon'):list():add()
+        end,
+        desc = 'Harpoon File',
+      },
+      {
+        '<leader>hh',
+        function()
+          local harpoon = require 'harpoon'
+          harpoon.ui:toggle_quick_menu(harpoon:list())
+        end,
+        desc = 'Harpoon Quick Menu',
+      },
+    }
 
-    vim.keymap.set('n', '<leader>ha', mark.add_file, { desc = '[H]arpoon [A]dd File' })
-    vim.keymap.set('n', '<leader>hh', ui.toggle_quick_menu, { desc = '[H]arpoon Menu' })
-    vim.keymap.set('n', '<leader>hn', function()
-      ui.nav_next()
-    end, { desc = '[H]arpoon [N]ext File' })
-    vim.keymap.set('n', '<leader>hp', function()
-      ui.nav_prev()
-    end, { desc = '[H]arpoon [P]revious File' })
-    vim.keymap.set('n', '<leader>h1', function()
-      ui.nav_file(1)
-    end, { desc = '[H]arpoon File [1]' })
-    vim.keymap.set('n', '<leader>h2', function()
-      ui.nav_file(2)
-    end, { desc = '[H]arpoon File [2]' })
-    vim.keymap.set('n', '<leader>h3', function()
-      ui.nav_file(3)
-    end, { desc = '[H]arpoon File [3]' })
-    vim.keymap.set('n', '<leader>h4', function()
-      ui.nav_file(4)
-    end, { desc = '[H]arpoon File [4]' })
+    for i = 1, 5 do
+      table.insert(keys, {
+        '<leader>h' .. i,
+        function()
+          require('harpoon'):list():select(i)
+        end,
+        desc = 'Harpoon to File ' .. i,
+      })
+    end
+    return keys
   end,
 }

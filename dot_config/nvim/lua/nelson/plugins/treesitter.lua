@@ -15,7 +15,6 @@ return {
         'markdown',
         'markdown_inline',
         'query',
-        'bash',
         'vim',
         'vimdoc',
         'json',

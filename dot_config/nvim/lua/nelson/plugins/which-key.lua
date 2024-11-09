@@ -42,10 +42,12 @@ return {
 
       -- Document existing key chains
       spec = {
-        { '<leader>b', group = '[B]uffers' },
-        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
+        { '<leader>b', group = 'buffer' },
+        { '<leader>c', group = 'code', mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]ocument' },
-        { '<leader>h', group = '[H]arpoon' },
+        { '<leader>f', group = 'file/find' },
+        { '<leader>g', group = 'git' },
+        { '<leader>h', group = 'harpoon' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
