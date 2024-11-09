@@ -35,5 +35,11 @@ curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh 
 # install tpm plugin manager for Tmux
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
+# install lazygit
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit -D -t /usr/local/bin/
+
 # Start Zsh to trigger any setup that would run when it's first opened
 ~/.local/bin/chezmoi --source ~/.dotfiles init --apply
