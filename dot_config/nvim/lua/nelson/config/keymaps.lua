@@ -38,6 +38,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<leader>bn', ':bnext<CR>', { desc = '[B]uffer [N]ext' })
 vim.keymap.set('n', '<leader>bp', ':bprevious<CR>', { desc = '[B]uffer [P]revious' })
 vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { desc = '[B]uffer [D]elete' })
+vim.keymap.set('n', '<leader>bb', ':b#<CR>', { desc = '[B]uffer [#] Toggle' })
 
 -- Move highlighted text
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")

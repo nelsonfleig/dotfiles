@@ -102,6 +102,10 @@ return {
       keymap.set('n', '<leader>gc', '<cmd>Telescope git_commits<CR>', { desc = 'Commits' })
       keymap.set('n', '<leader>gs', '<cmd>Telescope git_status<CR>', { desc = 'Status' })
 
+      -- search
+      keymap.set('n', '<leader>st', '<cmd>TodoTelescope<CR>', { desc = 'Todo' })
+
+      -- TODO: Update these mappings to remove the [S] prefixes and repetition with above mappings. KISS!
       -- Kickstart mappings
       keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })

@@ -110,6 +110,10 @@ return {
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+          -- Navigate diagnostics
+          map(']d', vim.diagnostic.goto_next, 'Go to next diagnostic') -- jump to previous diagnostic in buffer
+          map('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostic') -- jump to previous diagnostic in buffer
+
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
           --    See `:help CursorHold` for information about when this is executed
@@ -151,6 +155,13 @@ return {
         end,
       })
 
+      -- Change the Diagnostic symbols in the sign column (gutter)
+      local signs = { Error = ' ', Warn = ' ', Hint = '󰠠 ', Info = ' ' }
+      for type, icon in pairs(signs) do
+        local hl = 'DiagnosticSign' .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+      end
+
       -- LSP servers and clients are able to communicate to each other what features they support.
       --  By default, Neovim doesn't support everything that is in the LSP specification.
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
@@ -191,7 +202,15 @@ return {
       --    :Mason
       --
       --  You can press `g?` for help in this menu.
-      require('mason').setup()
+      require('mason').setup {
+        ui = {
+          icons = {
+            package_installed = '✓',
+            package_pending = '➜',
+            package_uninstalled = '✗',
+          },
+        },
+      }
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
