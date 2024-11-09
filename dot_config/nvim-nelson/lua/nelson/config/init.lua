@@ -1,0 +1,5 @@
+require 'nelson.config.options'
+require 'nelson.config.keymaps'
+require 'nelson.config.autocommands'
+require 'nelson.config.health'
+require 'nelson.config.lazy'
