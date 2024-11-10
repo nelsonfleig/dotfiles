@@ -11,3 +11,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+-- Close Neotree on quit to prevent issue with persistence plugin
+vim.api.nvim_create_autocmd('VimLeavePre', {
+  command = ':Neotree close',
+})

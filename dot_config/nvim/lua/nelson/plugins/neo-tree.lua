@@ -12,12 +12,17 @@ return {
   keys = {
     { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
+  deactivate = function()
+    vim.cmd [[Neotree close]]
+  end,
   opts = {
+    sources = { 'filesystem', 'buffers', 'git_status' },
+    open_files_do_not_replace_types = { 'terminal', 'Trouble', 'trouble', 'qf', 'Outline' },
     filesystem = {
       bind_to_cwd = false,
       follow_current_file = { enabled = true },
       use_libuv_file_watcher = true,
-      hijack_netrw_behavior = 'open_default',
+      -- hijack_netrw_behavior = 'open_default',
     },
     window = {
       mappings = {
@@ -34,6 +39,20 @@ return {
         },
         ['P'] = { 'toggle_preview', config = { use_float = false } },
         ['\\'] = 'close_window',
+      },
+    },
+    default_component_configs = {
+      indent = {
+        with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
+        expander_collapsed = '',
+        expander_expanded = '',
+        expander_highlight = 'NeoTreeExpander',
+      },
+      git_status = {
+        symbols = {
+          unstaged = '󰄱',
+          staged = '󰱒',
+        },
       },
     },
   },
@@ -56,3 +75,5 @@ return {
     })
   end,
 }
+
+-- vim: ts=2 sts=2 sw=2 et

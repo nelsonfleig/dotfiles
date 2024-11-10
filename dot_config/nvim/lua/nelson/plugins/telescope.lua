@@ -31,6 +31,21 @@ return {
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
+      -- customized (more efficient) find function
+      local function find_command()
+        if 1 == vim.fn.executable 'rg' then
+          return { 'rg', '--files', '--color', 'never', '-g', '!.git' }
+        elseif 1 == vim.fn.executable 'fd' then
+          return { 'fd', '--type', 'f', '--color', 'never', '-E', '.git' }
+        elseif 1 == vim.fn.executable 'fdfind' then
+          return { 'fdfind', '--type', 'f', '--color', 'never', '-E', '.git' }
+        elseif 1 == vim.fn.executable 'find' and vim.fn.has 'win32' == 0 then
+          return { 'find', '.', '-type', 'f' }
+        elseif 1 == vim.fn.executable 'where' then
+          return { 'where', '/r', '.', '*' }
+        end
+      end
+
       -- Telescope is a fuzzy finder that comes with a lot of different things that
       -- it can fuzzy find! It's more than just a "file finder", it can search
       -- many different aspects of Neovim, your workspace, LSP, and more!
@@ -51,7 +66,12 @@ return {
       local telescope = require 'telescope'
       local actions = require 'telescope.actions'
       telescope.setup {
-
+        pickers = {
+          find_files = {
+            find_command = find_command,
+            hidden = true,
+          },
+        },
         path_display = { 'smart' },
         mappings = {
           i = {
@@ -97,6 +117,7 @@ return {
       keymap.set('n', '<leader>fR', function()
         builtin.oldfiles { cwd = utils.buffer_dir() }
       end, { desc = 'Recent (cwd)' })
+      keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Buffers' })
 
       -- git
       keymap.set('n', '<leader>gc', '<cmd>Telescope git_commits<CR>', { desc = 'Commits' })
@@ -104,20 +125,30 @@ return {
 
       -- search
       keymap.set('n', '<leader>st', '<cmd>TodoTelescope<CR>', { desc = 'Todo' })
-
-      -- TODO: Update these mappings to remove the [S] prefixes and repetition with above mappings. KISS!
-      -- Kickstart mappings
-      keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-      keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-      keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-      keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-      keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-      keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-      keymap.set('n', '<leader>sv', builtin.git_files, { desc = '[S]earch [V]ersioned Files (Git)' })
-      keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch [B]uffers' })
+      keymap.set('n', '<leader>s"', builtin.registers, { desc = 'Registers' })
+      keymap.set('n', '<leader>sd', function()
+        builtin.diagnostics {
+          bufnr = 0,
+        }
+      end, { desc = 'Diagnostics (Document)' })
+      keymap.set('n', '<leader>sD', builtin.diagnostics, { desc = 'Diagnostics (Workspace)' })
+      keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Resume' })
+      keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Grep (Root Dir)' })
+      keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Help Pages' })
+      keymap.set('n', '<leader>so', builtin.vim_options, { desc = 'Options' })
+      keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Keymaps' })
+      keymap.set('n', '<leader>sw', builtin.grep_string, { desc = 'Word (Root Dir)' })
+      keymap.set('n', '<leader>sW', function()
+        builtin.grep_string { cwd = utils.buffer_dir() }
+      end, { desc = 'Word (cwd)' })
+      -- It's also possible to pass additional configuration options.
+      --  See `:help telescope.builtin.live_grep()` for information about particular keys
+      keymap.set('n', '<leader>s/', function()
+        builtin.live_grep {
+          grep_open_files = true,
+          prompt_title = 'Live Grep in Open Files',
+        }
+      end, { desc = 'Grep (Open Files)' })
 
       -- Slightly advanced example of overriding default behavior and theme
       -- keymap.set('n', '<leader>/', function()
@@ -127,15 +158,6 @@ return {
       --     previewer = false,
       --   })
       -- end, { desc = '[/] Fuzzily search in current buffer' })
-
-      -- It's also possible to pass additional configuration options.
-      --  See `:help telescope.builtin.live_grep()` for information about particular keys
-      keymap.set('n', '<leader>s/', function()
-        builtin.live_grep {
-          grep_open_files = true,
-          prompt_title = 'Live Grep in Open Files',
-        }
-      end, { desc = '[S]earch [/] in Open Files' })
     end,
   },
 }

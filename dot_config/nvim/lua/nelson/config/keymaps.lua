@@ -22,6 +22,9 @@ vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
+-- quit
+vim.keymap.set('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit All' })
+
 -- Just don't use Q
 vim.keymap.set('n', 'Q', '<nop>')
 
@@ -35,10 +38,12 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Buffer Navigation
-vim.keymap.set('n', '<leader>bn', ':bnext<CR>', { desc = '[B]uffer [N]ext' })
-vim.keymap.set('n', '<leader>bp', ':bprevious<CR>', { desc = '[B]uffer [P]revious' })
-vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { desc = '[B]uffer [D]elete' })
-vim.keymap.set('n', '<leader>bb', ':b#<CR>', { desc = '[B]uffer [#] Toggle' })
+vim.keymap.set('n', '[b', ':bprevious<CR>', { desc = 'Previous Buffer' })
+vim.keymap.set('n', ']b', ':bnext<CR>', { desc = 'Next Buffer' })
+vim.keymap.set('n', '<S-h>', ':bprevious<CR>', { desc = 'Previous Buffer' })
+vim.keymap.set('n', '<S-l>', ':bnext<CR>', { desc = 'Next Buffer' })
+vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { desc = 'Delete' })
+vim.keymap.set('n', '<leader>bb', ':b#<CR>', { desc = 'Toggle Other Buffer' })
 
 -- Move highlighted text
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
