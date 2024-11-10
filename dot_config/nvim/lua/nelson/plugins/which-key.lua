@@ -42,6 +42,8 @@ return {
 
       -- Document existing key chains
       spec = {
+        { '<BS>', desc = 'Decrement Selection', mode = 'x' },
+        { '<c-space>', desc = 'Increment Selection', mode = { 'x', 'n' } },
         { '<leader>b', group = 'buffer' },
         { '<leader>c', group = 'code', mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]ocument' },
@@ -52,6 +54,8 @@ return {
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]oggle' },
+
+        { '<leader>x', group = 'diagnostics/quickfix', icon = { icon = '󱖫 ', color = 'green' } },
       },
     },
   },
