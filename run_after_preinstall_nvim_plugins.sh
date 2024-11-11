@@ -2,7 +2,10 @@
 
 # Alias `v` to my own Neovim config in headless mode
 v() {
-  NVIM_APPNAME=nvim-nelson nvim --headless "$@" +qa
+  nvim --headless "$@" +qa
+
+  # If you want to preinstall on a different nvim config
+  # NVIM_APPNAME=nvim-nelson nvim --headless "$@" +qa
 }
 
 
