@@ -34,11 +34,17 @@ return {
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'onsails/lspkind.nvim', -- vs-code like pictograms
     },
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+      local lspkind = require 'lspkind'
+
+      -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
+      require('luasnip.loaders.from_vscode').lazy_load()
+
       luasnip.config.setup {}
 
       cmp.setup {
@@ -110,6 +116,14 @@ return {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+        },
+        -- configure lspkind for vs-code like pictograms in completion menu
+        ---@diagnostic disable-next-line: missing-fields
+        formatting = {
+          format = lspkind.cmp_format {
+            maxwidth = 50,
+            ellipsis_char = '...',
+          },
         },
       }
     end,
