@@ -42,8 +42,7 @@ vim.keymap.set('n', '[b', ':bprevious<CR>', { desc = 'Previous Buffer' })
 vim.keymap.set('n', ']b', ':bnext<CR>', { desc = 'Next Buffer' })
 vim.keymap.set('n', '<S-h>', ':bprevious<CR>', { desc = 'Previous Buffer' })
 vim.keymap.set('n', '<S-l>', ':bnext<CR>', { desc = 'Next Buffer' })
-vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { desc = 'Delete' })
-vim.keymap.set('n', '<leader>bb', ':b#<CR>', { desc = 'Toggle Other Buffer' })
+vim.keymap.set('n', '<leader>bb', ':b#<CR>', { desc = 'Switch to Other Buffer' })
 
 -- Move highlighted text
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
