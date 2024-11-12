@@ -40,6 +40,7 @@ return {
     })
 
     -- Function to close empty and unnamed buffers
+    -- https://vi.stackexchange.com/questions/44617/bufferline-in-nvim-auto-close-or-hide-no-name-buffer-when-other-buffers-are-o
     local close_empty_unnamed_buffers = function()
       -- Get a list of all buffers
       local buffers = vim.api.nvim_list_bufs()
@@ -70,7 +71,6 @@ return {
     end
 
     -- Clear the mandatory, empty, unnamed buffer when a real file is opened:
-
     vim.api.nvim_create_autocmd('BufReadPost', {
       callback = function()
         close_empty_unnamed_buffers()
