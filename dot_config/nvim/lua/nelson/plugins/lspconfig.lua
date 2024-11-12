@@ -226,10 +226,10 @@ return {
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'pyright',
-        'black',
+        'black', -- formatter, requires Python >= 3.9
         'isort',
         'flake8',
-        'prettier',
+        'prettierd', -- faster than "prettier"
         'eslint_d',
         'ts_ls',
         'emmet-language-server',

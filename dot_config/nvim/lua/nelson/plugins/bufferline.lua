@@ -6,8 +6,8 @@ return {
   keys = {
     { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle Pin' },
     { '<leader>bP', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Delete Non-Pinned Buffers' },
-    { '<leader>br', '<Cmd>BufferLineCloseRight<CR>', desc = 'Delete Buffers to the Right' },
-    { '<leader>bl', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Delete Buffers to the Left' },
+    { '<leader>bl', '<Cmd>BufferLineCloseRight<CR>', desc = 'Delete Buffers to the Right' },
+    { '<leader>bh', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Delete Buffers to the Left' },
     { '<S-h>', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev Buffer' },
     { '<S-l>', '<cmd>BufferLineCycleNext<cr>', desc = 'Next Buffer' },
     { '[b', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev Buffer' },
@@ -17,6 +17,11 @@ return {
   },
   opts = {
     options = {
+      -- stylua: ignore
+      close_command = function(n) Snacks.bufdelete(n) end,
+      -- stylua: ignore
+      right_mouse_command = function(n) Snacks.bufdelete(n) end,
+      diagnostics = 'nvim_lsp',
       always_show_bufferline = false,
       offsets = {
         {
@@ -48,7 +53,7 @@ return {
       -- Iterate over each buffer
       for _, bufnr in ipairs(buffers) do
         -- Check if the buffer is empty and doesn't have a name
-        if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_buf_get_name(bufnr) == '' and vim.api.nvim_buf_get_option(bufnr, 'buftype') == '' then
+        if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_buf_get_name(bufnr) == '' and vim.api.nvim_get_option_value('buftype', { buf = bufnr }) == '' then
           -- Get all lines in the buffer
           local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
 
@@ -76,6 +81,5 @@ return {
         close_empty_unnamed_buffers()
       end,
     })
-    -- vim.api.nvim_command 'autocmd BufReadPost * lua require("config.bufferline_setup").close_empty_unnamed_buffers()'
   end,
 }
