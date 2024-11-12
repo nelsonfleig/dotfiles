@@ -193,14 +193,14 @@ if [[ "$(uname)" == "Darwin" ]]; then
   export JAVA_HOME="/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home" # Installed along with Android Studio
 
   # rbenv initialization
-	if [ -d "$HOME/.rbenv" ]; then
-  	export RBENV_ROOT="$HOME/.rbenv"
-  	[[ -d $RBENV_ROOT/bin ]] && export PATH="$RBENV_ROOT/bin:$PATH"
-  	[ -f ~/.rbenv ] && eval "$(rbenv init -)"
-	fi
+  if [ -d "$HOME/.rbenv" ]; then
+    export RBENV_ROOT="$HOME/.rbenv"
+    [[ -d $RBENV_ROOT/bin ]] && export PATH="$RBENV_ROOT/bin:$PATH"
+    eval "$(rbenv init -)"
+  fi
 elif [ -n "${CODESPACES}" ]; then
-	export PYTHONPATH="/workspaces/web/venv/lib/python3.8/site-packages:$PYTHONPATH"
-	export SHELL=/bin/zsh
+  export PYTHONPATH="/workspaces/web/venv/lib/python3.8/site-packages:$PYTHONPATH"
+  export SHELL=/bin/zsh
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
   source ~/.fzf/shell/completion.zsh
   source ~/.fzf/shell/key-bindings.zsh
