@@ -79,6 +79,7 @@ return {
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
+          map('<leader>cR', Snacks.rename.rename_file, 'Rename File')
           map('<leader>cr', vim.lsp.buf.rename, 'Rename')
 
           -- Execute a code action, usually your cursor needs to be on top of an error
