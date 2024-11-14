@@ -94,6 +94,14 @@ return {
           map(']d', vim.diagnostic.goto_next, 'Go to next diagnostic') -- jump to previous diagnostic in buffer
           map('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostic') -- jump to previous diagnostic in buffer
 
+          -- Navigate references
+          if Snacks.words.is_enabled() then
+            -- stylua: ignore
+            map(']]', function() Snacks.words.jump(vim.v.count1, true) end, 'Next Reference')
+            -- stylua: ignore
+            map('[[', function() Snacks.words.jump(-vim.v.count1, true) end, 'Prev Reference')
+          end
+
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
           --    See `:help CursorHold` for information about when this is executed

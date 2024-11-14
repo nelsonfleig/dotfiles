@@ -23,6 +23,7 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 
 require('lazy').setup({
+  { 'nvim-lua/plenary.nvim', lazy = true },
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'christoomey/vim-tmux-navigator',
   { import = 'nelson.plugins' },

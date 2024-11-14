@@ -2,11 +2,12 @@
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 return {
   'nvim-neo-tree/neo-tree.nvim',
-  version = '*',
+  branch = 'v3.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
     'MunifTanjim/nui.nvim',
+    '3rd/image.nvim',
   },
   cmd = 'Neotree',
   keys = {
@@ -37,7 +38,7 @@ return {
           end,
           desc = 'Copy Path to Clipboard',
         },
-        ['P'] = { 'toggle_preview', config = { use_float = false } },
+        ['P'] = { 'toggle_preview', config = { use_float = false, use_image_nvim = true } },
       },
     },
     default_component_configs = {
