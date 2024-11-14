@@ -7,4 +7,5 @@ LICENSE
 README.md
 .oh-my-zsh/cache/completions/
 .oh-my-zsh/custom/themes/powerlevel10k/internal/configure.zsh.zwc
-lazy-lock.json
+.config/**/lazy-lock.json
+
