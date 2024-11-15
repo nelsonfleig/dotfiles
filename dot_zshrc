@@ -199,7 +199,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
     eval "$(rbenv init -)"
   fi
 elif [ -n "${CODESPACES}" ]; then
-  export PYTHONPATH="/workspaces/web/venv/lib/python3.11/site-packages:$PYTHONPATH"
+	export WORKSPACE=${WORKSPACE:-'/workspaces/web'}
+	export PYTHONPATH=$WORKSPACE/src/aplaceforrover:$WORKSPACE/venv/lib/python3.11/site-packages
   export SHELL=/bin/zsh
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
   source ~/.fzf/shell/completion.zsh
