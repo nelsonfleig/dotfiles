@@ -1,7 +1,7 @@
 return {
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    event = 'VeryLazy',
     opts = {
       icons = {
         -- set icon mappings to true if you have a Nerd Font
@@ -42,14 +42,16 @@ return {
 
       -- Document existing key chains
       spec = {
-        { '<leader>b', group = '[B]uffers' },
-        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
-        { '<leader>d', group = '[D]ocument' },
-        { '<leader>h', group = '[H]arpoon' },
-        { '<leader>r', group = '[R]ename' },
-        { '<leader>s', group = '[S]earch' },
-        { '<leader>w', group = '[W]orkspace' },
-        { '<leader>t', group = '[T]oggle' },
+        { '<BS>', desc = 'Decrement Selection', mode = 'x' },
+        { '<c-space>', desc = 'Increment Selection', mode = { 'x', 'n' } },
+        { '<leader>b', group = 'buffer' },
+        { '<leader>c', group = 'code', mode = { 'n', 'x' } },
+        { '<leader>f', group = 'file/find' },
+        { '<leader>g', group = 'git' },
+        { '<leader>h', group = 'harpoon', icon = { icon = '󱡅' } },
+        { '<leader>q', group = 'quit/session' },
+        { '<leader>s', group = 'search' },
+        { '<leader>x', group = 'diagnostics/quickfix', icon = { icon = '󱖫 ', color = 'green' } },
       },
     },
   },

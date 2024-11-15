@@ -167,8 +167,7 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH="$HOME/.local/bin":$PATH
 
 # vim configs (see https://michaeluloth.com/neovim-switch-configs/)
-alias v='nvim' # My more or less "fixed" config
-alias vn='NVIM_APPNAME=nvim-nelson nvim' # My "trying things out" config
+alias v='NVIM_APPNAME=nvim-nelson nvim' # My current config
 
 # Here for trying out other's configs. These may not all be included in my dotfiles
 alias vl='NVIM_APPNAME=nvim-lazy nvim' # LazyVim
@@ -199,6 +198,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
     eval "$(rbenv init -)"
   fi
 elif [ -n "${CODESPACES}" ]; then
+	alias pytest='t'
 	export WORKSPACE=${WORKSPACE:-'/workspaces/web'}
 	export PYTHONPATH=$WORKSPACE/src/aplaceforrover:$WORKSPACE/venv/lib/python3.11/site-packages
   export SHELL=/bin/zsh

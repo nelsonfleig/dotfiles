@@ -64,11 +64,30 @@ vim.opt.scrolloff = 10
 vim.opt.swapfile = false
 vim.opt.backup = false
 
--- NOTE: Not sure if these will clash with vim-sleuth and conform. Need to test.
--- vim.opt.tabstop = 4
--- vim.opt.softtabstop = 4
--- vim.opt.shiftwidth = 4
--- vim.opt.expandtab = true
--- vim.opt.smartindent = true
+vim.opt.fillchars = {
+  foldopen = '',
+  foldclose = '',
+  fold = ' ',
+  foldsep = ' ',
+  diff = '╱',
+  eob = ' ',
+}
+
+-- Code folding (folds look nicer together with indent-blankline, but don't like the indentation guids atm)
+vim.opt.foldlevel = 99
+vim.opt.foldcolumn = '0' -- Set to "1" if you want to see the fold markers and depth
+vim.opt.foldmethod = 'expr'
+vim.opt.foldtext = ''
+vim.opt.foldexpr = "v:lua.require'nelson.utils.folding'.foldexpr()"
+
+-- Indenting and tabbing
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.smartindent = true
+
+-- Global statusline
+vim.opt.laststatus = 3
 
 -- vim: ts=2 sts=2 sw=2 et

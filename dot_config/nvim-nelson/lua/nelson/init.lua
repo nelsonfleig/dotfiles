@@ -1,1 +1,1 @@
-require("nelson.config")
+require 'nelson.config'
