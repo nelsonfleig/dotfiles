@@ -168,6 +168,7 @@ export PATH="$HOME/.local/bin":$PATH
 
 # vim configs (see https://michaeluloth.com/neovim-switch-configs/)
 alias v='NVIM_APPNAME=nvim-nelson nvim' # My current config
+alias vr='NVIM_APPNAME=nvim-rover nvim' # WIP - minimal neovim configuration for development at rover
 
 # Here for trying out other's configs. These may not all be included in my dotfiles
 alias vl='NVIM_APPNAME=nvim-lazy nvim' # LazyVim
