@@ -1,3 +1,4 @@
+require 'nelson.config.global'
 require 'nelson.config.options'
 require 'nelson.config.keymaps'
 require 'nelson.config.autocommands'

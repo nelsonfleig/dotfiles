@@ -17,7 +17,6 @@ return {
       desc = 'Delete Buffer',
     },
     {
-
       '<leader>bo',
       function()
         Snacks.bufdelete.other()
