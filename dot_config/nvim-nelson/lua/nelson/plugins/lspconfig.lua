@@ -168,7 +168,9 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        clangd = {},
+        -- clangd = {},
+        ts_ls = {},
+        pyright = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -206,7 +208,6 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'pyright',
         'black', -- formatter, requires Python >= 3.9
         'isort',
         'flake8',
@@ -215,7 +216,6 @@ return {
         -- Fixed version to 13 because latest version doesn't recognize eslintrc.js
         -- See https://www.reddit.com/r/neovim/comments/1fdpap9/eslint_error_could_not_parse_linter_output_due_to/
         { 'eslint_d', version = '13.1.2' },
-        'ts_ls',
         'emmet-language-server',
         'tailwindcss',
       })

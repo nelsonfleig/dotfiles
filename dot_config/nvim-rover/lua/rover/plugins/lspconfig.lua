@@ -52,6 +52,10 @@ return {
           --  Useful when your language has ways of declaring types without an actual implementation.
           map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
+          -- Jump to the implementation of the word under your cursor.
+          --  Useful when your language has ways of declaring types without an actual implementation.
+          map('gl', vim.diagnostic.open_float, '[G]oto [L]ine Diagnostics')
+
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
@@ -116,19 +120,8 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
-        --
-
+        pyright = {},
+        ts_ls = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -156,8 +149,17 @@ return {
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
+      -- Formatters/Linters
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
+        'stylua',
+        'isort',
+        'black',
+        'flake8',
+        'prettierd',
+        -- TODO: Find a fix to use latest eslint_d version
+        -- Fixed version to 13 because latest version doesn't recognize eslintrc.js
+        -- See https://www.reddit.com/r/neovim/comments/1fdpap9/eslint_error_could_not_parse_linter_output_due_to/
+        { 'eslint_d', version = '13.1.2' },
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
