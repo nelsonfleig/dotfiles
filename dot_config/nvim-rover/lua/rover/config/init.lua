@@ -1,6 +1,5 @@
 -- [[ Global Settings ]]
--- Set <space> as the leader key
--- ch NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+-- NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -8,8 +7,8 @@ vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
 -- Set default colorscheme
-vim.cmd.colorscheme("habamax")
+vim.cmd.colorscheme('habamax')
 
-require("rover.config.options")
-require("rover.config.keymaps")
-require("rover.config.lazy")
+require('rover.config.options')
+require('rover.config.keymaps')
+require('rover.config.lazy')
