@@ -109,6 +109,8 @@ return {
             ellipsis_char = '...',
           },
         },
+        -- TODO: Add a comparator to sort user methods first
+        -- sorting: {}
       }
     end,
   },
