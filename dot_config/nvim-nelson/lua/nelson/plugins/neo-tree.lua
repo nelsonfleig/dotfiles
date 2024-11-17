@@ -7,7 +7,7 @@ return {
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
     'MunifTanjim/nui.nvim',
-    '3rd/image.nvim',
+    -- '3rd/image.nvim',
   },
   cmd = 'Neotree',
   keys = {
@@ -23,7 +23,15 @@ return {
       bind_to_cwd = false,
       follow_current_file = { enabled = true },
       use_libuv_file_watcher = true,
-      hijack_netrw_behavior = 'open_default',
+      filtered_items = {
+        hide_dotfiles = false,
+        hide_by_name = {
+          '.git',
+        },
+        never_show = {
+          '.DS_Store',
+        },
+      },
     },
     window = {
       mappings = {
@@ -38,7 +46,7 @@ return {
           end,
           desc = 'Copy Path to Clipboard',
         },
-        ['P'] = { 'toggle_preview', config = { use_float = false, use_image_nvim = true } },
+        ['P'] = { 'toggle_preview', config = { use_float = false, use_image_nvim = false } },
       },
     },
     default_component_configs = {
@@ -47,12 +55,6 @@ return {
         expander_collapsed = '',
         expander_expanded = '',
         expander_highlight = 'NeoTreeExpander',
-      },
-      git_status = {
-        symbols = {
-          unstaged = '󰄱',
-          staged = '󰱒',
-        },
       },
     },
   },
