@@ -22,11 +22,15 @@ return {
     -- Set menu
     -- TODO: Update these buttons keyamps
     dashboard.section.buttons.val = {
-      dashboard.button('SPC sf', '󰱼  > Find File', '<cmd>Telescope find_files<CR>'),
-      dashboard.button('n', '  > New File', '<cmd>ene<CR>'),
-      dashboard.button('SPC \\', '  > Toggle file explorer', '<cmd>Neotree toggle<CR>'),
-      dashboard.button('SPC fs', '  > Find Word', '<cmd>Telescope live_grep<CR>'),
-      dashboard.button('q', ' > Quit NVIM', '<cmd>qa<CR>'),
+      dashboard.button('f', ' ' .. ' Find file', '<cmd>lua require("telescope.builtin").find_files()<cr>'),
+      dashboard.button('n', ' ' .. ' New file', '<cmd> ene <BAR> startinsert <cr>'),
+      dashboard.button('r', ' ' .. ' Recent files', '<cmd>lua require("telescope.builtin").oldfiles()<cr>'),
+      dashboard.button('g', ' ' .. ' Find text', '<cmd>lua require("telescope.builtin").live_grep()<cr>'),
+      dashboard.button('c', ' ' .. ' Config', '<cmd><leader>lua require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })<cr>'),
+      dashboard.button('s', ' ' .. ' Restore session', '<cmd> lua require("persistence").load() <cr>'),
+      dashboard.button('l', '󰒲 ' .. ' Lazy', '<cmd>Lazy<cr>'),
+      dashboard.button('\\', ' ' .. ' Toggle file explorer', '<cmd>Neotree toggle<CR>'),
+      dashboard.button('q', ' ' .. ' Quit', '<cmd>qa<cr>'),
     }
 
     -- Send config to alpha

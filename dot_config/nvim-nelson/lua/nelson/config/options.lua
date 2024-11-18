@@ -74,11 +74,13 @@ vim.opt.fillchars = {
 }
 
 -- Code folding (folds look nicer together with indent-blankline, but don't like the indentation guids atm)
+-- vim.opt.foldcolumn = '0' -- Set to "1" if you want to see the fold markers and depth
 vim.opt.foldlevel = 99
-vim.opt.foldcolumn = '0' -- Set to "1" if you want to see the fold markers and depth
 vim.opt.foldmethod = 'expr'
 vim.opt.foldtext = ''
 vim.opt.foldexpr = "v:lua.require'nelson.utils.folding'.foldexpr()"
+
+vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 
 -- Indenting and tabbing
 vim.opt.expandtab = true
