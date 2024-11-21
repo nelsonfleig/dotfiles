@@ -86,7 +86,15 @@ return {
 
       -- Language Servers
       local servers = {
-        pyright = {},
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                extraPaths = { '/workspaces/web/venv/lib/python3.11/site-packages', '/workspaces/web/src/aplaceforrover' },
+              },
+            },
+          },
+        },
         ts_ls = {},
         lua_ls = {
           settings = {
