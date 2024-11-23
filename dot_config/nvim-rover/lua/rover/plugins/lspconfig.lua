@@ -86,6 +86,14 @@ return {
 
       -- Language Servers
       local servers = {
+        -- NOTE: Formatting is done with eslint_d. See `formatting.lua` file
+        -- TODO: We should find a way to use either eslint or eslint_d to provide linting, code actions and formatting!
+        eslint = {
+          settings = {
+            -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
+            workingDirectories = { mode = 'auto' },
+          },
+        },
         pyright = {},
         ts_ls = {},
         lua_ls = {
@@ -110,7 +118,7 @@ return {
         'black',
         'flake8',
         'prettierd',
-        -- TODO: Find a fix to use latest eslint_d version
+        -- TODO: Find a fix to use latest eslint_d version and provide code actions
         -- Fixed version to 13 because latest version doesn't recognize eslintrc.js
         -- See https://www.reddit.com/r/neovim/comments/1fdpap9/eslint_error_could_not_parse_linter_output_due_to/
         { 'eslint_d', version = '13.1.2' },
