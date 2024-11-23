@@ -168,8 +168,17 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        -- clangd = {}, -- for C and C++
+        -- NOTE: Formatting is done with eslint_d. See `formatting.lua` file
+        eslint = {
+          settings = {
+            -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
+            workingDirectories = { mode = 'auto' },
+          },
+        },
         ts_ls = {},
+        -- NOTE: Make sure your PYTHONPATH is set correctly to detect
+        -- installed python packages
         pyright = {},
         lua_ls = {
           -- cmd = {...},
@@ -181,7 +190,7 @@ return {
                 callSnippet = 'Replace',
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              diagnostics = { globals = { 'Snacks' }, disable = { 'missing-fields' } },
+              diagnostics = { disable = { 'missing-fields' } },
             },
           },
         },
@@ -207,17 +216,17 @@ return {
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
+        'emmet-language-server',
+        'tailwindcss',
         'stylua', -- Used to format Lua code
         'black', -- formatter, requires Python >= 3.9
         'isort',
         'flake8',
         'prettierd', -- faster than "prettier"
-        -- TODO: Find a fix to use latest eslint_d version
+        -- TODO: Find a fix to use latest eslint_d version and provide code actions
         -- Fixed version to 13 because latest version doesn't recognize eslintrc.js
         -- See https://www.reddit.com/r/neovim/comments/1fdpap9/eslint_error_could_not_parse_linter_output_due_to/
-        { 'eslint_d', version = '13.1.2' },
-        'emmet-language-server',
-        'tailwindcss',
+        { 'eslint_d', version = '13.1.2' }, -- NOTE: Only used for formatting
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -229,6 +238,7 @@ return {
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+
             require('lspconfig')[server_name].setup(server)
           end,
         },
