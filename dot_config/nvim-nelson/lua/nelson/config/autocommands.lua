@@ -16,3 +16,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.api.nvim_create_autocmd('VimLeavePre', {
   command = ':Neotree close',
 })
+
+-- Load Snacks statuscolumn after nvim-treesitter loads. Crashes when set in options.lua
+-- HACK: This requires a restart but at least prevents Neovim from crashing due to missing nvim-treesitter
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'nvim-treesitter',
+  callback = function()
+    vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
+  end,
+})

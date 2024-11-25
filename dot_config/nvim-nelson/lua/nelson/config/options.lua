@@ -80,7 +80,8 @@ vim.opt.foldmethod = 'expr'
 vim.opt.foldtext = ''
 vim.opt.foldexpr = "v:lua.require'nelson.utils.folding'.foldexpr()"
 
-vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
+-- NOTE: Moved to autocmd. Causes crash on fresh install due to dependency on nvim-treesitter
+-- vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 
 -- Indenting and tabbing
 vim.opt.expandtab = true
