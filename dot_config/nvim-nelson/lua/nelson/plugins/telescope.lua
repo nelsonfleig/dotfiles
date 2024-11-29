@@ -66,7 +66,7 @@ return {
       local actions = require 'telescope.actions'
       telescope.setup {
         defaults = {
-          path_display = { 'smart' },
+          path_display = { shorten = { len = 1, exclude = { -4, -3, -2, -1 } } },
           mappings = {
             i = {
               ['<C-k>'] = actions.move_selection_previous, -- move to prev result
