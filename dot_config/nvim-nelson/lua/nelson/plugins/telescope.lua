@@ -133,6 +133,9 @@ return {
       keymap.set('n', '<leader>sD', builtin.diagnostics, { desc = 'Diagnostics (Workspace)' })
       keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Resume' })
       keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Grep (Root Dir)' })
+      keymap.set('n', '<leader>sG', function()
+        builtin.live_grep { cwd = utils.buffer_dir() }
+      end, { desc = 'Grep (cwd)' })
       keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Help Pages' })
       keymap.set('n', '<leader>so', builtin.vim_options, { desc = 'Options' })
       keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Keymaps' })
