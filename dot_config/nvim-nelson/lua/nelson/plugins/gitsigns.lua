@@ -13,6 +13,25 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
       topdelete = { text = '‾' },
       changedelete = { text = '~' },
     },
+    current_line_blame = true,
+    on_attach = function(buffer)
+      local gs = require 'gitsigns'
+
+      local function map(mode, l, r, desc)
+        vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+      end
+
+      map('n', '<leader>gb', function()
+        gs.blame_line { full = true }
+      end, 'Blame Line')
+      map('n', '<leader>gB', function()
+        gs.blame()
+      end, 'Blame Buffer')
+      map('n', '<leader>gd', gs.diffthis, 'Diff This')
+      map('n', '<leader>gD', function()
+        gs.diffthis '~'
+      end, 'Diff This ~')
+    end,
   },
 }
 
