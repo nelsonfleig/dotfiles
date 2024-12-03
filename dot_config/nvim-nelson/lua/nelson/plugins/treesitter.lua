@@ -1,6 +1,10 @@
 return {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      lazy = true,
+    },
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
@@ -62,19 +66,20 @@ return {
             ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class' },
           },
         },
-        swap = {
-          enable = true,
-          swap_next = {
-            ['<leader>na'] = '@parameter.inner', -- swap parameters/argument with next
-            ['<leader>n:'] = '@property.outer', -- swap object property with next
-            ['<leader>nm'] = '@function.outer', -- swap function with next
-          },
-          swap_previous = {
-            ['<leader>pa'] = '@parameter.inner', -- swap parameters/argument with prev
-            ['<leader>p:'] = '@property.outer', -- swap object property with prev
-            ['<leader>pm'] = '@function.outer', -- swap function with previous
-          },
-        },
+        -- TODO: Disable these in which-key
+        -- swap = {
+        --   enable = true,
+        --   swap_next = {
+        --     ['<leader>na'] = '@parameter.inner', -- swap parameters/argument with next
+        --     ['<leader>n:'] = '@property.outer', -- swap object property with next
+        --     ['<leader>nm'] = '@function.outer', -- swap function with next
+        --   },
+        --   swap_previous = {
+        --     ['<leader>pa'] = '@parameter.inner', -- swap parameters/argument with prev
+        --     ['<leader>p:'] = '@property.outer', -- swap object property with prev
+        --     ['<leader>pm'] = '@function.outer', -- swap function with previous
+        --   },
+        -- },
         move = {
           enable = true,
           set_jumps = true, -- whether to set jumps in the jumplist
@@ -121,13 +126,6 @@ return {
     --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-  },
-  {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-    },
-    lazy = true,
   },
 }
 -- vim: ts=2 sts=2 sw=2 et
