@@ -168,6 +168,10 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 # keybinds
 export PATH="$HOME/.local/bin":$PATH
 
+# Rancher
+export PATH=$HOME/.rd/bin:$PATH
+export AWS_DEFAULT_PROFILE=prod
+
 # vim configs (see https://michaeluloth.com/neovim-switch-configs/)
 alias v='NVIM_APPNAME=nvim-nelson nvim' # My current config
 alias vr='NVIM_APPNAME=nvim-rover nvim' # WIP - minimal neovim configuration for development at rover
@@ -176,11 +180,7 @@ alias vr='NVIM_APPNAME=nvim-rover nvim' # WIP - minimal neovim configuration for
 alias vl='NVIM_APPNAME=nvim-lazy nvim' # LazyVim
 alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart 
 alias vm='NVIM_APPNAME=nvim-kickstart-modular nvim' # Kickstart Modular
-alias vt='NVIM_APPNAME=nvim-typecraft nvim' # Config following Typecraft Tutorial
 alias vj='NVIM_APPNAME=nvim-joseanmartinez nvim' # Config following Josean Martinez Tutorial
-alias vc='NVIM_APPNAME=nvim-nvchad nvim' # NvChad config
-alias vs='NVIM_APPNAME=nvim-starter-kit nvim' # Nerd Signals starter config - from youtube
-alias vh='NVIM_APPNAME=nvim-vhyrro nvim' # Config following Vhyrro's YT series
 alias vd='NVIM_APPNAME=nvim-devaslife nvim' # Config following Devaslife's setup from 11/23 on YT
 alias vp='NVIM_APPNAME=nvim-prime nvim' # Primeagen's config as of 12/2022 
 
@@ -201,9 +201,9 @@ if [[ "$(uname)" == "Darwin" ]]; then
     eval "$(rbenv init -)"
   fi
 elif [ -n "${CODESPACES}" ]; then
-	alias pytest='t'
-	export WORKSPACE=${WORKSPACE:-'/workspaces/web'}
-	export PYTHONPATH=$WORKSPACE/src/aplaceforrover:$WORKSPACE/venv/lib/python3.11/site-packages
+  alias pytest='t'
+  export WORKSPACE=${WORKSPACE:-'/workspaces/web'}
+  export PYTHONPATH=$WORKSPACE/src/aplaceforrover:$WORKSPACE/venv/lib/python3.11/site-packages
   export SHELL=/bin/zsh
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
   source ~/.fzf/shell/completion.zsh
@@ -224,4 +224,3 @@ alias sync='source ~/.zshrc'
 create-staging() {
   git push -f origin $(git rev-parse --abbrev-ref HEAD):staging-$1
 }
-
