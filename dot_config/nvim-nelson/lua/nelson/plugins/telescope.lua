@@ -28,6 +28,8 @@ return {
       { 'nvim-telescope/telescope-ui-select.nvim' },
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      -- Perform telescope.nvim functions in selected directories
+      { 'princejoogie/dir-telescope.nvim', opts = {} },
     },
     config = function()
       -- customized (more efficient) find function
@@ -91,6 +93,7 @@ return {
       -- Enable Telescope extensions if they are installed
       pcall(telescope.load_extension, 'fzf')
       pcall(telescope.load_extension, 'ui-select')
+      pcall(telescope.load_extension, 'dir')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -114,6 +117,7 @@ return {
         builtin.find_files { cwd = utils.buffer_dir() }
       end, { desc = 'Find Files (cwd)' })
       keymap.set('n', '<leader>fg', builtin.git_files, { desc = 'Find Files (git-files)' })
+      keymap.set('n', '<leader>fs', '<cmd>FileInDirectory<CR>', { desc = 'Find Files (sub-directory)' })
       keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Recent' })
       keymap.set('n', '<leader>fR', function()
         builtin.oldfiles { cwd = utils.buffer_dir() }
@@ -138,6 +142,7 @@ return {
       keymap.set('n', '<leader>sG', function()
         builtin.live_grep { cwd = utils.buffer_dir() }
       end, { desc = 'Grep (cwd)' })
+      keymap.set('n', '<leader>ss', '<cmd>GrepInDirectory<CR>', { desc = 'Grep (sub-directory)' })
       keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Help Pages' })
       keymap.set('n', '<leader>so', builtin.vim_options, { desc = 'Options' })
       keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Keymaps' })
