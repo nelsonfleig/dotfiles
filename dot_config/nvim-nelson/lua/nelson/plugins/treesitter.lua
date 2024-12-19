@@ -129,5 +129,30 @@ return {
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
+    config = function()
+      local toggle_context = function()
+        return Snacks.toggle {
+          name = 'Code Context',
+          get = function()
+            return vim.g.show_ts_context
+          end,
+          set = function(state)
+            if state == true then
+              vim.cmd 'TSContextEnable'
+            else
+              vim.cmd 'TSContextDisable'
+            end
+            vim.g.show_ts_context = state
+          end,
+        }
+      end
+      toggle_context():map '<leader>uc'
+    end,
+  },
 }
 -- vim: ts=2 sts=2 sw=2 et

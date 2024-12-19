@@ -13,3 +13,6 @@ vim.g.loaded_netrwPlugin = 1
 
 -- controls formatting on save
 vim.g.autoformat = true
+
+-- whether to show the code context for nvim-treesitter-context
+vim.g.show_ts_context = true
