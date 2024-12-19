@@ -117,7 +117,7 @@ return {
         builtin.find_files { cwd = utils.buffer_dir() }
       end, { desc = 'Find Files (cwd)' })
       keymap.set('n', '<leader>fg', builtin.git_files, { desc = 'Find Files (git-files)' })
-      keymap.set('n', '<leader>fs', '<cmd>FileInDirectory<CR>', { desc = 'Find Files (sub-directory)' })
+      keymap.set('n', '<leader>fi', '<cmd>FileInDirectory<CR>', { desc = 'Find Files (in directory)' })
       keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Recent' })
       keymap.set('n', '<leader>fR', function()
         builtin.oldfiles { cwd = utils.buffer_dir() }
@@ -142,7 +142,7 @@ return {
       keymap.set('n', '<leader>sG', function()
         builtin.live_grep { cwd = utils.buffer_dir() }
       end, { desc = 'Grep (cwd)' })
-      keymap.set('n', '<leader>ss', '<cmd>GrepInDirectory<CR>', { desc = 'Grep (sub-directory)' })
+      keymap.set('n', '<leader>si', '<cmd>GrepInDirectory<CR>', { desc = 'Grep (in directory)' })
       keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Help Pages' })
       keymap.set('n', '<leader>so', builtin.vim_options, { desc = 'Options' })
       keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Keymaps' })
