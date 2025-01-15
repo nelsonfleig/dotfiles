@@ -200,6 +200,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
     [[ -d $RBENV_ROOT/bin ]] && export PATH="$RBENV_ROOT/bin:$PATH"
     eval "$(rbenv init -)"
   fi
+
+  alias t='tmux'
 elif [ -n "${CODESPACES}" ]; then
   alias pytest='t'
   export WORKSPACE=${WORKSPACE:-'/workspaces/web'}
@@ -211,10 +213,8 @@ elif [ -n "${CODESPACES}" ]; then
   source ~/.bash_aliases
 fi
 
-
 # Helpful alias
 alias lg=lazygit
-alias t='tmux'
 alias gc='gcmsg'
 alias csdot='gh codespace create -R roverdotcom/web --status -d dotfiles-nelson'
 alias csnew='gh codespace create -R roverdotcom/web --status -d'
