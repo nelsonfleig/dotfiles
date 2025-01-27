@@ -202,8 +202,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
   fi
 
   alias t='tmux'
+	alias ld=lazydocker
 elif [ -n "${CODESPACES}" ]; then
-  alias pytest='t'
   export WORKSPACE=${WORKSPACE:-'/workspaces/web'}
   export PYTHONPATH=$WORKSPACE/src/aplaceforrover:$WORKSPACE/venv/lib/python3.11/site-packages
   export SHELL=/bin/zsh
