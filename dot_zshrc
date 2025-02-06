@@ -218,6 +218,7 @@ alias lg=lazygit
 alias gc='gcmsg'
 alias csdot='gh codespace create -R roverdotcom/web --status -d dotfiles-nelson'
 alias csnew='gh codespace create -R roverdotcom/web --status -d'
+alias cspf='gh cs ports forward 8001:8001'
 alias sync='source ~/.zshrc'
 
 # For use in roverdotcom repos
