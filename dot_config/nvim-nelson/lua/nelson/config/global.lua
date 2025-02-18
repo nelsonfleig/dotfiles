@@ -16,3 +16,9 @@ vim.g.autoformat = true
 
 -- whether to show the code context for nvim-treesitter-context
 vim.g.show_ts_context = true
+
+-- controls whether to show relative line numbers
+vim.g.show_relative_number = true
+
+-- To fix pyenv/pyright issues: https://github.com/neovim/nvim-lspconfig/issues/717
+-- vim.env.PYENV_VERSION = vim.fn.system('pyenv version'):match '(%S+)%s+%(.-%)'

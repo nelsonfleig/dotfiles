@@ -25,4 +25,24 @@ return {
       desc = 'Delete Other Buffers',
     },
   },
+  config = function(_, opts)
+    require('snacks').setup(opts)
+    local toggle_relative_numbers = function()
+      return Snacks.toggle {
+        name = 'Relative Line Numbers',
+        get = function()
+          return vim.g.show_relative_number
+        end,
+        set = function(state)
+          if state == true then
+            vim.cmd 'set relativenumber'
+          else
+            vim.cmd 'set norelativenumber'
+          end
+          vim.g.show_relative_number = state
+        end,
+      }
+    end
+    toggle_relative_numbers():map '<leader>ur'
+  end,
 }
