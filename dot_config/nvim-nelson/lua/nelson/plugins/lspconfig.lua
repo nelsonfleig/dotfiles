@@ -194,6 +194,22 @@ return {
             },
           },
         },
+        tailwindcss = {
+          settings = {
+            tailwindCSS = {
+              experimental = {
+                -- Intellisense for tailwind
+                classRegex = {
+                  -- class variance authority
+                  { 'cva\\(((?:[^()]|\\([^()]*\\))*)\\)', '["\'`]([^"\'`]*).*?["\'`]' },
+                  { 'cx\\(((?:[^()]|\\([^()]*\\))*)\\)', "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                  -- tailwind-variants
+                  { '(["\'`][^"\'`]*.*?["\'`])', '["\'`]([^"\'`]*).*?["\'`]' },
+                },
+              },
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -217,7 +233,6 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'emmet-language-server',
-        'tailwindcss',
         'stylua', -- Used to format Lua code
         'black', -- formatter, requires Python >= 3.9
         'isort',
