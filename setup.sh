@@ -17,7 +17,7 @@ sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
 # Reset OMZ
 if [ ! -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
     rm -rf $HOME/.oh-my-zsh
-    ZSH= sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    ZSH= sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
 # Install Powerlevel10K
