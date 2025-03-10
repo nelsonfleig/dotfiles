@@ -49,7 +49,7 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Append line below to current line
-vim.keymap.set('n', 'J', 'mzJ`z')
+-- vim.keymap.set('n', 'J', 'mzJ`z')
 
 -- Scroll and maintain cursor in center
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
