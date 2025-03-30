@@ -202,7 +202,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
   fi
 
   alias t='tmux'
-	alias ld=lazydocker
+  alias ld=lazydocker
+  export PLANTUML_JAR="$HOME/.local/share/plantuml/plantuml.jar"
 elif [ -n "${CODESPACES}" ]; then
   export WORKSPACE=${WORKSPACE:-'/workspaces/web'}
   export PYTHONPATH=$WORKSPACE/src/aplaceforrover:$WORKSPACE/venv/lib/python3.11/site-packages
