@@ -219,11 +219,16 @@ fi
 alias lg=lazygit
 alias gc='gcmsg'
 alias csdot='gh codespace create -R roverdotcom/web --status -d dotfiles-nelson'
-alias csnew='gh codespace create -R roverdotcom/web --status -d'
+# alias csnew='gh codespace create -R roverdotcom/web --status -d'
 alias cspf='gh cs ports forward 8001:8001'
 alias sync='source ~/.zshrc'
 
 # For use in roverdotcom repos
 create-staging() {
   git push -f origin $(git rev-parse --abbrev-ref HEAD):staging-$1
+}
+
+csnew() {
+    local name="${1:-my-cs}"  # Default to "nelson-cs" if no argument is given
+    gh codespace create -R roverdotcom/web --status -d "$name"
 }
