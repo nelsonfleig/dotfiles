@@ -234,7 +234,7 @@ return {
       vim.list_extend(ensure_installed, {
         'emmet-language-server',
         'stylua', -- Used to format Lua code
-        'black', -- formatter, requires Python >= 3.9
+        { 'black', version = '23.7.0' }, -- Version used in Rover codespace
         'isort',
         'flake8',
         'prettierd', -- faster than "prettier"
