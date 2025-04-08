@@ -20,5 +20,8 @@ vim.g.show_ts_context = true
 -- controls whether to show relative line numbers
 vim.g.show_relative_number = true
 
+-- copy to system clipboard, even in ssh
+vim.g.clipboard = 'osc52'
+
 -- To fix pyenv/pyright issues: https://github.com/neovim/nvim-lspconfig/issues/717
 -- vim.env.PYENV_VERSION = vim.fn.system('pyenv version'):match '(%S+)%s+%(.-%)'
