@@ -203,16 +203,17 @@ if [[ "$(uname)" == "Darwin" ]]; then
 
   alias t='tmux'
   alias ld=lazydocker
-  export PLANTUML_JAR="$HOME/.local/share/plantuml/plantuml.jar"
 elif [ -n "${CODESPACES}" ]; then
+  # Local tmux is unable to set TERM in the CS shell so we do it manually
+  export TERM=tmux-256color
   export WORKSPACE=${WORKSPACE:-'/workspaces/web'}
-  export PYTHONPATH=$WORKSPACE/src/aplaceforrover:$WORKSPACE/venv/lib/python3.11/site-packages
   export SHELL=/bin/zsh
   export _ZO_DOCTOR=0
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
   source ~/.fzf/shell/completion.zsh
   source ~/.fzf/shell/key-bindings.zsh
   source ~/.bash_aliases
+  source "$WORKSPACE/venv/bin/activate"
 fi
 
 # Helpful alias
