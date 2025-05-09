@@ -43,6 +43,23 @@ return {
         end,
       }
     end
+
+    local toggle_indent_lines = function()
+      return Snacks.toggle {
+        name = 'Indent Lines',
+        get = function()
+          return Snacks.indent.enabled
+        end,
+        set = function(state)
+          if state == true then
+            Snacks.indent.enable()
+          else
+            Snacks.indent.disable()
+          end
+        end,
+      }
+    end
     toggle_relative_numbers():map '<leader>ur'
+    toggle_indent_lines():map '<leader>ui'
   end,
 }

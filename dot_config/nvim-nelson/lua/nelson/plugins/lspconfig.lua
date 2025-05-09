@@ -1,3 +1,5 @@
+local lsp_action = require('nelson.utils.lsp').action
+
 -- LSP Plugins
 return {
   {
@@ -220,7 +222,21 @@ return {
             workingDirectories = { mode = 'auto' },
           },
         },
-        ts_ls = {},
+        -- ts_ls = {},
+        vtsls = {
+          keys = {
+            {
+              '<leader>co',
+              lsp_action['source.organizeImports'],
+              desc = 'Organize Imports',
+            },
+            {
+              '<leader>cM',
+              lsp_action['source.addMissingImports.ts'],
+              desc = 'Add missing imports',
+            },
+          },
+        },
         -- NOTE: Make sure your PYTHONPATH is set correctly to detect
         -- installed python packages
         pyright = {},
