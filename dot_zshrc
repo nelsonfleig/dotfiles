@@ -230,6 +230,6 @@ create-staging() {
 }
 
 csnew() {
-    local name="${1:-my-cs}"  # Default to "nelson-cs" if no argument is given
+    local name="${1:-nelson-cs}"  # Default to "nelson-cs" if no argument is given
     gh codespace create -R roverdotcom/web --status -d "$name"
 }
