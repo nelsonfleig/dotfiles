@@ -143,9 +143,9 @@ return {
           end,
           set = function(state)
             if state == true then
-              vim.cmd 'TSContextEnable'
+              vim.cmd 'TSContext enable'
             else
-              vim.cmd 'TSContextDisable'
+              vim.cmd 'TSContext disable'
             end
             vim.g.show_ts_context = state
           end,
