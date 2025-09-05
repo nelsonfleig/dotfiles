@@ -10,9 +10,10 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # download and install chezmoi to ~/.local/bin
 # [[ -e ~/.local/bin/chezmoi ]] || BINDIR=~/.local/bin sh -c "$(curl -fsSL get.chezmoi.io)"
+sh -c "$(curl -fsSL get.chezmoi.io/lb)" -- -b $HOME/.local/bin
 # NOTE: We install Chezmoi v2.59 because >= 2.60 requires a Glibc version >= 2.32. We have 2.31 in current Ubuntu image.
-curl -LO https://github.com/twpayne/chezmoi/releases/download/v2.59.0/chezmoi_2.59.0_linux_amd64.deb
-sudo dpkg -i chezmoi_2.59.0_linux_amd64.deb
+# curl -LO https://github.com/twpayne/chezmoi/releases/download/v2.59.0/chezmoi_2.59.0_linux_amd64.deb
+# sudo dpkg -i chezmoi_2.59.0_linux_amd64.deb
 
 # Set default shell to zsh
 sudo chsh "$(id -un)" --shell "/usr/bin/zsh"

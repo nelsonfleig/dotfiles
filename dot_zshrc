@@ -180,9 +180,7 @@ alias vr='NVIM_APPNAME=nvim-rover nvim' # WIP - minimal neovim configuration for
 alias vl='NVIM_APPNAME=nvim-lazy nvim' # LazyVim
 alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart 
 alias vm='NVIM_APPNAME=nvim-kickstart-modular nvim' # Kickstart Modular
-alias vj='NVIM_APPNAME=nvim-joseanmartinez nvim' # Config following Josean Martinez Tutorial
 alias vd='NVIM_APPNAME=nvim-devaslife nvim' # Config following Devaslife's setup from 11/23 on YT
-alias vp='NVIM_APPNAME=nvim-prime nvim' # Primeagen's config as of 12/2022 
 
 # MacOS specific
 if [[ "$(uname)" == "Darwin" ]]; then
