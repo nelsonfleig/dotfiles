@@ -15,4 +15,4 @@ if [ -n "${CODESPACES}" ]; then
 
 fi
 
-# source ~/.zshrc
+source ~/.zshrc
