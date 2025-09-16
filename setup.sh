@@ -9,10 +9,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 [[ -e ~/.dotfiles ]] || ln -s "$DIR" ~/.dotfiles
 
 # download and install chezmoi to ~/.local/bin
-# [[ -e ~/.local/bin/chezmoi ]] || BINDIR=~/.local/bin sh -c "$(curl -fsSL get.chezmoi.io)"
-# NOTE: We install Chezmoi v2.59 because >= 2.60 requires a Glibc version >= 2.32. We have 2.31 in current Ubuntu image.
-curl -LO https://github.com/twpayne/chezmoi/releases/download/v2.59.0/chezmoi_2.59.0_linux_amd64.deb
-sudo dpkg -i chezmoi_2.59.0_linux_amd64.deb
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
 
 # Set default shell to zsh
 sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
@@ -45,4 +42,4 @@ tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
 
 # Start Zsh to trigger any setup that would run when it's first opened
-/usr/bin/chezmoi init --apply $GITHUB_USER
+$HOME/.local/bin/chezmoi init --apply $GITHUB_USER

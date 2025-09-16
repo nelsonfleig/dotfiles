@@ -2,8 +2,7 @@
 
 # Alias `v` to my own Neovim config in headless mode
 v() {
-  nvim --headless "$@" +qa
-
+  NVIM_APPNAME=nvim-nelson nvim
   # If you want to preinstall on a different nvim config
   # NVIM_APPNAME=nvim-nelson nvim --headless "$@" +qa
 }
@@ -11,7 +10,7 @@ v() {
 
 preinstall_neovim_plugins() {
   # Install plugins and parsers in headless mode
-  NVIM_APPNAME=nvim-nelson nvim --headless "+Lazy! sync" -c "TSUpdateSync" +qa
+  v --headless "+Lazy! sync" -c "TSUpdateSync" +qa
   # Commented while testing the above command 
   # v "+Lazy! sync"
 }
