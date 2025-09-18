@@ -170,7 +170,6 @@ export PATH="$HOME/.local/bin":$PATH
 
 # Rancher
 export PATH=$HOME/.rd/bin:$PATH
-export AWS_DEFAULT_PROFILE=prod
 
 # vim configs (see https://michaeluloth.com/neovim-switch-configs/)
 alias v='NVIM_APPNAME=nvim-nelson nvim' # My current config
