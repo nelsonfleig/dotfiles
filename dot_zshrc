@@ -232,3 +232,7 @@ csnew() {
     local name="${1:-nelson-cs}"  # Default to "nelson-cs" if no argument is given
     gh codespace create -R roverdotcom/web --status -d "$name"
 }
+
+# Only to be used with `rvr` and `irvr`
+[ -f "~/projects/web/src/frontend/reactNativeApp/android/scripts/adb/aliases.sh" ] && source "~/projects/web/src/frontend/reactNativeApp/android/scripts/adb/aliases.sh"
+[ -f "~/projects/web/src/frontend/reactNativeApp/ios/scripts/rvr/aliases.sh" ] && source "~/projects/web/src/frontend/reactNativeApp/ios/scripts/rvr/aliases.sh"
