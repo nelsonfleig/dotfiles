@@ -62,4 +62,8 @@ vim.keymap.set('x', '<leader>p', [["_dP]])
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = 'which_key_ignore' })
 vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'which_key_ignore' })
 
+-- In visual mode, replace the selected text with the unnamed register,
+-- without yanking the deleted text.
+vim.keymap.set('x', 'p', [["_dP]])
+
 -- vim: ts=2 sts=2 sw=2 et
