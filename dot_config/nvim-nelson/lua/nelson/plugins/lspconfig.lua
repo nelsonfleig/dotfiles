@@ -294,9 +294,9 @@ return {
       vim.list_extend(ensure_installed, {
         'emmet-language-server',
         'stylua', -- Used to format Lua code
-        -- { 'black', version = '23.7.0' }, -- Version used in Rover codespace (currently being replaced for ruff)
+        { 'black', version = '23.7.0' }, -- Version used in Rover codespace (will soon be replaced for ruff)
         -- 'flake8', -- Used in Rover codespace (currently being replaced for ruff)
-        'ruff',
+        -- 'ruff',
         'isort',
         'prettierd', -- faster than "prettier"
         -- TODO: Find a fix to use latest eslint_d version and provide code actions
