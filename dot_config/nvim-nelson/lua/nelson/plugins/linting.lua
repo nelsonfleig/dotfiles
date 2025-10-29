@@ -5,7 +5,6 @@ return {
     local lint = require 'lint'
 
     -- NOTE: Linting for JS/TS is provided by `eslint` lsp server
-    -- NOTE: Linting for python is provided by `ruff` lsp server on save
     lint.linters_by_ft = {
       -- javascript = { 'eslint_d' },
       -- typescript = { 'eslint_d' },
