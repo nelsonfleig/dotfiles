@@ -4,8 +4,10 @@ return {
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       lazy = true,
+      branch = 'master', -- plugin underwent a rewrite. this is a frozen branch for backwards compatibility
     },
     build = ':TSUpdate',
+    branch = 'master', -- plugin underwent a rewrite. this is a frozen branch for backwards compatibility
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
