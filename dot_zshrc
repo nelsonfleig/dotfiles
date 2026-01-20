@@ -191,13 +191,6 @@ if [[ "$(uname)" == "Darwin" ]]; then
   # export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
   export JAVA_HOME="/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home" # Installed along with Android Studio
 
-  # rbenv initialization
-  if [ -d "$HOME/.rbenv" ]; then
-    export RBENV_ROOT="$HOME/.rbenv"
-    [[ -d $RBENV_ROOT/bin ]] && export PATH="$RBENV_ROOT/bin:$PATH"
-    eval "$(rbenv init -)"
-  fi
-
   alias t='tmux'
   alias ld=lazydocker
 elif [ -n "${CODESPACES}" ]; then
@@ -233,6 +226,35 @@ csnew() {
     gh codespace create -R roverdotcom/web --status -d "$name"
 }
 
-# Only to be used with `rvr` and `irvr`
-[ -f "~/projects/web/src/frontend/reactNativeApp/android/scripts/adb/aliases.sh" ] && source "~/projects/web/src/frontend/reactNativeApp/android/scripts/adb/aliases.sh"
-[ -f "~/projects/web/src/frontend/reactNativeApp/ios/scripts/rvr/aliases.sh" ] && source "~/projects/web/src/frontend/reactNativeApp/ios/scripts/rvr/aliases.sh"
+cssh() {
+  gh cs ssh -- \
+    -L 8001:localhost:8001 \
+    -L 2222:localhost:2222 \
+    -L 3000:localhost:3000 \
+    -L 3001:localhost:3001 \
+    -L 3307:localhost:3307 \
+    -L 8000:localhost:8000 \
+    -L 8011:localhost:8011 \
+    -L 8002:localhost:8002 \
+    -L 8081:localhost:8081 \
+    -L 9000:localhost:9000 \
+    -L 13307:localhost:13307 \
+    -L 15672:localhost:15672 \
+    -L 35432:localhost:35432 \
+    -L 45432:localhost:45432 \
+    -L 55432:localhost:55432 \
+    -L 16686:localhost:16686 \
+    -q -o LogLevel=ERROR "$@"
+}
+
+cstunnel() {
+  cssh -N
+}
+
+# rbenv initialization
+export RBENV_ROOT="$HOME/.rbenv"
+[[ -d $RBENV_ROOT/bin ]] && export PATH="$RBENV_ROOT/bin:$PATH"
+eval "$(rbenv init -)"
+### MANAGED BY LOCAL SETUP RVR START (DO NOT EDIT)
+source /Users/nelsonfleig/projects/web/src/frontend/reactNativeApp/scripts/rvr/aliases.sh
+### MANAGED BY LOCAL SETUP RVR END (DO NOT EDIT)
