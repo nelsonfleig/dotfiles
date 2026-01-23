@@ -191,6 +191,14 @@ if [[ "$(uname)" == "Darwin" ]]; then
   # export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
   export JAVA_HOME="/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home" # Installed along with Android Studio
 
+  # rbenv initialization
+  export RBENV_ROOT="$HOME/.rbenv"
+  [[ -d $RBENV_ROOT/bin ]] && export PATH="$RBENV_ROOT/bin:$PATH"
+  eval "$(rbenv init -)"
+
+  # rvr
+  source /Users/nelsonfleig/projects/web/src/frontend/reactNativeApp/scripts/rvr/aliases.sh
+
   alias t='tmux'
   alias ld=lazydocker
 elif [ -n "${CODESPACES}" ]; then
@@ -250,11 +258,3 @@ cssh() {
 cstunnel() {
   cssh -N
 }
-
-# rbenv initialization
-export RBENV_ROOT="$HOME/.rbenv"
-[[ -d $RBENV_ROOT/bin ]] && export PATH="$RBENV_ROOT/bin:$PATH"
-eval "$(rbenv init -)"
-### MANAGED BY LOCAL SETUP RVR START (DO NOT EDIT)
-source /Users/nelsonfleig/projects/web/src/frontend/reactNativeApp/scripts/rvr/aliases.sh
-### MANAGED BY LOCAL SETUP RVR END (DO NOT EDIT)
