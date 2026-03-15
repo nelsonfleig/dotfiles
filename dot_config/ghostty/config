@@ -9,8 +9,9 @@ font-size = 14
 shell-integration = zsh
 shell-integration-features = no-cursor
 
-background-opacity = 0.90
-background-blur = 20
+background = #15151d
+background-opacity = 0.95
+background-blur = 30
 
 cursor-style = block
 cursor-style-blink = true
