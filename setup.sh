@@ -41,5 +41,9 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/downl
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
 
+# Install LSP servers for Claude Code
+npm i -g pyright
+npm i -g typescript-language-server typescript
+
 # Start Zsh to trigger any setup that would run when it's first opened
 $HOME/.local/bin/chezmoi init --apply $GITHUB_USER
