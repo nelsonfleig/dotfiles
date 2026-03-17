@@ -45,5 +45,8 @@ sudo install lazygit -D -t /usr/local/bin/
 npm i -g pyright
 npm i -g typescript-language-server typescript
 
+# Update Claude to latest
+claude update
+
 # Start Zsh to trigger any setup that would run when it's first opened
 $HOME/.local/bin/chezmoi init --apply $GITHUB_USER
