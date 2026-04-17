@@ -41,6 +41,14 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/downl
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
 
+# Install tree-sitter-cli (pre-built binary, required by Neovim tree-sitter)
+TS_VERSION=$(curl -s "https://api.github.com/repos/tree-sitter/tree-sitter/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+curl -Lo tree-sitter.gz "https://github.com/tree-sitter/tree-sitter/releases/download/v${TS_VERSION}/tree-sitter-cli-linux-x64.gz"
+gunzip tree-sitter.gz
+chmod +x tree-sitter
+sudo install tree-sitter /usr/local/bin/
+rm -f tree-sitter
+
 # Install LSP servers for Claude Code
 npm i -g pyright
 npm i -g typescript-language-server typescript
