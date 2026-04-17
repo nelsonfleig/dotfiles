@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(NVIM_APPNAME=nvim-nelson nvim --headless \"+lua print\\(''''loaded''''\\)\" +qa)",
+      "Bash(NVIM_APPNAME=nvim-nelson nvim --headless \"+lua require\\('lazy'\\).load\\({plugins={'nvim-treesitter-textobjects'}}\\)\" \"+sleep 2\" \"+messages\" \"+qa!\" 2>&1)",
+      "Bash(NVIM_APPNAME=nvim-nelson nvim --headless -c \"lua local ok, err = pcall\\(function\\(\\) require\\(''''nvim-treesitter-textobjects''''\\).setup\\({select = {lookahead = true}, move = {set_jumps = true}}\\); local ts_select = require\\(''''nvim-treesitter-textobjects.select''''\\); local ts_move = require\\(''''nvim-treesitter-textobjects.move''''\\); local ts_swap = require\\(''''nvim-treesitter-textobjects.swap''''\\); print\\(''''All modules loaded OK''''\\) end\\); print\\(ok, err\\)\" -c \"qa!\")",
+      "Bash(NVIM_APPNAME=nvim-nelson nvim --headless /Users/nelsonfleig/.config/nvim-nelson/lua/nelson/plugins/treesitter.lua -c \"lua vim.defer_fn\\(function\\(\\) local msgs = vim.api.nvim_exec2\\(''''messages'''', {output=true}\\); print\\(msgs.output\\) end, 3000\\)\" -c \"sleep 4\" -c \"qa!\")",
+      "Bash(NVIM_APPNAME=nvim-nelson nvim --headless /Users/nelsonfleig/.config/nvim-nelson/lua/nelson/plugins/treesitter.lua -c \"lua vim.defer_fn\\(function\\(\\) local msgs = vim.api.nvim_exec2\\(''''messages'''', {output=true}\\); io.write\\(msgs.output\\); io.flush\\(\\); vim.cmd\\(''''qa!''''\\) end, 5000\\)\")",
+      "Bash(tree-sitter --version)",
+      "Bash(brew list:*)",
+      "Read(//opt/homebrew/Cellar/tree-sitter/0.26.8/**)",
+      "Bash(brew info:*)",
+      "Bash(NVIM_APPNAME=nvim-nelson nvim --headless -c \"lua local ts = require\\(''''nvim-treesitter''''\\); print\\(''''installed:'''', vim.inspect\\(ts.get_installed\\(\\)\\)\\)\" -c \"qa!\")",
+      "Bash(xargs -I{} basename {} .so)",
+      "Read(//opt/homebrew/Cellar/neovim/**)",
+      "Bash(NVIM_APPNAME=nvim-nelson nvim --headless -c \"lua vim.defer_fn\\(function\\(\\) local msgs = vim.api.nvim_exec2\\('messages', {output=true}\\); io.write\\(msgs.output or '\\(no messages\\)'\\); io.flush\\(\\); vim.cmd\\('qa!'\\) end, 2000\\)\" 2>&1)",
+      "Bash(NVIM_APPNAME=nvim-nelson nvim --headless -c 'lua vim.defer_fn\\(function\\(\\) local msgs = vim.api.nvim_exec2\\(\"messages\", {output=true}\\); io.write\\(msgs.output or \"\\(no messages\\)\"\\); io.flush\\(\\); vim.cmd\\(\"qa!\"\\) end, 2000\\)' 2>&1)"
+    ]
+  }
+}

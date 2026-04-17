@@ -43,7 +43,7 @@ sudo install lazygit -D -t /usr/local/bin/
 
 # Install tree-sitter-cli (pre-built binary, required by Neovim tree-sitter)
 TS_VERSION=$(curl -s "https://api.github.com/repos/tree-sitter/tree-sitter/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
-curl -Lo tree-sitter.gz "https://github.com/tree-sitter/tree-sitter/releases/download/v${TS_VERSION}/tree-sitter-cli-linux-x64.gz"
+curl -Lo tree-sitter.gz "https://github.com/tree-sitter/tree-sitter/releases/download/v${TS_VERSION}/tree-sitter-linux-x64.gz"
 gunzip tree-sitter.gz
 chmod +x tree-sitter
 sudo install tree-sitter /usr/local/bin/
