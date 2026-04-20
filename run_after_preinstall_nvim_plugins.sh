@@ -11,7 +11,7 @@ v() {
 
 preinstall_neovim_plugins() {
   # Install plugins and parsers in headless mode
-  NVIM_APPNAME=nvim-nelson nvim --headless "+Lazy! sync" -c "TSUpdateSync" +qa
+  NVIM_APPNAME=nvim-nelson nvim --headless "+Lazy! sync" -c "TSUpdate" +qa
   # Commented while testing the above command 
   # v "+Lazy! sync"
 }
