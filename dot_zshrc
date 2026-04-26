@@ -171,6 +171,9 @@ export PATH="$HOME/.local/bin":$PATH
 # Rancher
 export PATH=$HOME/.rd/bin:$PATH
 
+# opencode
+export PATH=/Users/nelsonfleig/.opencode/bin:$PATH
+
 # vim configs (see https://michaeluloth.com/neovim-switch-configs/)
 alias v='NVIM_APPNAME=nvim-nelson nvim' # My current config
 alias vr='NVIM_APPNAME=nvim-rover nvim' # WIP - minimal neovim configuration for development at rover
@@ -258,3 +261,5 @@ cssh() {
 cstunnel() {
   cssh -N
 }
+
+
