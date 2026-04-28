@@ -16,6 +16,7 @@ return {
         { '<leader>c', group = 'code', mode = { 'n', 'x' } },
         { '<leader>f', group = 'file/find' },
         { '<leader>g', group = 'git' },
+        { '<leader>gh', group = 'hunks' },
         { '<leader>h', group = 'harpoon', icon = { icon = '󱡅' } },
         { '<leader>q', group = 'quit/session' },
         { '<leader>s', group = 'search' },

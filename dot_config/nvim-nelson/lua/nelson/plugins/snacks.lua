@@ -8,8 +8,29 @@ return {
     quickfile = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
+    gitbrowse = { enabled = true },
+    lazygit = { enabled = true },
   },
   keys = {
+    -- Git
+    {
+      '<leader>gl',
+      function() Snacks.lazygit() end,
+      desc = 'Lazygit',
+    },
+    {
+      '<leader>gx',
+      function() Snacks.gitbrowse() end,
+      desc = 'Git Browse',
+      mode = { 'n', 'v' },
+    },
+    {
+      '<leader>gX',
+      function() Snacks.gitbrowse({ open = function(url) vim.fn.setreg('+', url) end, notify = false }) end,
+      desc = 'Git Browse (copy URL)',
+      mode = { 'n', 'v' },
+    },
+    -- Buffers
     {
       '<leader>bd',
       function()
