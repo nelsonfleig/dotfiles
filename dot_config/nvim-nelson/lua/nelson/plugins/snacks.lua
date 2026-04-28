@@ -10,6 +10,31 @@ return {
     words = { enabled = true },
     gitbrowse = { enabled = true },
     lazygit = { enabled = true },
+    dashboard = {
+      preset = {
+        header = [[
+  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
+
+                 [ @nelsonfleig ]
+        ]],
+        keys = {
+          { icon = ' ', key = 'f', desc = 'Find File', action = function() require('telescope.builtin').find_files() end },
+          { icon = ' ', key = 'n', desc = 'New File', action = ':ene | startinsert' },
+          { icon = ' ', key = 'r', desc = 'Recent Files', action = function() require('telescope.builtin').oldfiles() end },
+          { icon = ' ', key = 'g', desc = 'Find Text', action = function() require('telescope.builtin').live_grep() end },
+          { icon = ' ', key = 'c', desc = 'Config', action = function() require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') }) end },
+          { icon = ' ', key = 's', desc = 'Restore Session', action = function() require('persistence').load() end },
+          { icon = '󰒲 ', key = 'l', desc = 'Lazy', action = ':Lazy' },
+          { icon = ' ', key = '\\', desc = 'File Explorer', action = ':Neotree toggle' },
+          { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
+        },
+      },
+    },
   },
   keys = {
     -- Git
