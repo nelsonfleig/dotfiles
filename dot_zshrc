@@ -76,7 +76,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # OMZ Plugin overrides
-ZOXIDE_CMD_OVERRIDE=cd
+# ZOXIDE_CMD_OVERRIDE=cd
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -87,7 +87,7 @@ plugins=(
 	git
 	zsh-autosuggestions
 	zsh-syntax-highlighting
-	zoxide
+	# zoxide
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -261,5 +261,11 @@ cssh() {
 cstunnel() {
   cssh -N
 }
-
+#
+# zoxide: only override `cd` in interactive shells. Non-interactive shells
+# (Claude Code's shell snapshot, scripts) keep the real builtin `cd`, which
+# avoids the "zoxide: command not found" errors.
+if [[ -o interactive ]] && command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh --cmd cd)"
+fi
 
