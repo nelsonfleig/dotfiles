@@ -199,8 +199,12 @@ if [[ "$(uname)" == "Darwin" ]]; then
   [[ -d $RBENV_ROOT/bin ]] && export PATH="$RBENV_ROOT/bin:$PATH"
   eval "$(rbenv init -)"
 
-  # rvr
-  source /Users/nelsonfleig/projects/web/src/frontend/reactNativeApp/scripts/rvr/aliases.sh
+  # rvr (replaced with rover-cli)
+  # source /Users/nelsonfleig/projects/web/src/frontend/reactNativeApp/scripts/rvr/aliases.sh
+  #
+  # rover-cli
+  export PATH="/Users/nelsonfleig/projects/web/dev-env/cli:$PATH"
+  alias rvr="rover-cli"
 
   alias t='tmux'
   alias ld=lazydocker
@@ -217,6 +221,9 @@ elif [ -n "${CODESPACES}" ]; then
   source "$WORKSPACE/venv/bin/activate"
   export PATH="/workspaces/web/venv/bin:$PATH"
   if [[ -f /workspaces/web/profile ]]; then . /workspaces/web/profile; fi
+
+  # Testing area
+  export EXPERIMENTAL_TSGO=true
 fi
 
 # Helpful alias
@@ -268,4 +275,3 @@ cstunnel() {
 if [[ -o interactive ]] && command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh --cmd cd)"
 fi
-
