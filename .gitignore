@@ -1,0 +1,6 @@
+# Build artifacts setup.sh used to leave behind when it downloaded into the
+# repo root. It now uses a temp dir, so these are only here for old checkouts.
+/lazygit
+/lazygit.tar.gz
+/tree-sitter
+/tree-sitter.gz
