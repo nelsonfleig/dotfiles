@@ -9,3 +9,4 @@ README.md
 .oh-my-zsh/custom/themes/powerlevel10k/internal/configure.zsh.zwc
 .config/**/lazy-lock.json
 
+wiki-setup.sh

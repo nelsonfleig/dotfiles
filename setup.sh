@@ -55,3 +55,7 @@ npm i -g typescript-language-server typescript
 
 # Start Zsh to trigger any setup that would run when it's first opened
 $HOME/.local/bin/chezmoi init --apply $GITHUB_USER
+
+# Set up the personal research wiki. Must come after chezmoi apply, which
+# owns ~/.claude/settings.json. Non-fatal: a wiki problem must not fail the build.
+bash "$DIR/wiki-setup.sh" || true
