@@ -138,17 +138,6 @@ if [[ -d "$HOME/.pyenv" ]]; then
 	eval "$(pyenv init -)"
 fi
 
-# pnpm
-export PNPM_HOME="/Users/nelsonfleig/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-# bun completions
-[ -s "/Users/nelsonfleig/.bun/_bun" ] && source "/Users/nelsonfleig/.bun/_bun"
-
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -158,21 +147,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # alias pip="pip3"
 alias srcvenv='source .venv/bin/activate' # source venv in current directory
 
-# android
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/emulator
-
 # keybinds
 export PATH="$HOME/.local/bin":$PATH
-
-# Rancher
-export PATH=$HOME/.rd/bin:$PATH
-
-# opencode
-export PATH=/Users/nelsonfleig/.opencode/bin:$PATH
 
 # vim configs (see https://michaeluloth.com/neovim-switch-configs/)
 alias v='NVIM_APPNAME=nvim-nelson nvim' # My current config
@@ -180,8 +156,6 @@ alias vr='NVIM_APPNAME=nvim-rover nvim' # WIP - minimal neovim configuration for
 
 # Here for trying out other's configs. These may not all be included in my dotfiles
 alias vl='NVIM_APPNAME=nvim-lazy nvim' # LazyVim
-alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart 
-alias vm='NVIM_APPNAME=nvim-kickstart-modular nvim' # Kickstart Modular
 alias vd='NVIM_APPNAME=nvim-devaslife nvim' # Config following Devaslife's setup from 11/23 on YT
 
 # MacOS specific
@@ -208,6 +182,29 @@ if [[ "$(uname)" == "Darwin" ]]; then
 
   alias t='tmux'
   alias ld=lazydocker
+
+  # pnpm
+  export PNPM_HOME="$HOME/Library/pnpm"
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
+
+  # bun completions
+  [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+  # android
+  export ANDROID_HOME="$HOME/Library/Android/sdk"
+  export PATH="$PATH:$ANDROID_HOME/platform-tools"
+  export PATH="$PATH:$ANDROID_HOME/tools"
+  export PATH="$PATH:$ANDROID_HOME/tools/bin"
+  export PATH="$PATH:$ANDROID_HOME/emulator"
+
+  # Rancher Desktop
+  export PATH="$HOME/.rd/bin:$PATH"
+
+  # opencode
+  export PATH="$HOME/.opencode/bin:$PATH"
 elif [ -n "${CODESPACES}" ]; then
   # Local tmux is unable to set TERM in the CS shell so we do it manually
   export TERM=tmux-256color
