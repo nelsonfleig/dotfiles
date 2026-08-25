@@ -1,19 +1,42 @@
 #!/usr/bin/env bash
-# Set up the personal research wiki (Karpathy LLM Wiki pattern). Called from the
-# end of setup.sh, and safe to run standalone — every step is idempotent.
+# Set up the personal research wiki (Karpathy LLM Wiki pattern).
 #
-# It lives in its own file rather than inline in setup.sh because setup.sh does
-# one-shot work (chsh, sudo install, git clone of oh-my-zsh plugins) that fails
-# on a second run under `set -e`. This script can be re-run on its own to
-# activate changes without a container rebuild.
+# This is a chezmoi `run_after_` hook, so chezmoi runs it at the end of every
+# `chezmoi apply` / `chezmoi init --apply`. That ordering is the point: chezmoi
+# manages dot_claude/settings.json -> ~/.claude/settings.json, so wiki hooks
+# merged in before the apply would be overwritten by it. Making it a hook rather
+# than a call at the end of setup.sh means chezmoi enforces the ordering instead
+# of a comment in setup.sh.
 #
-# It must run *after* `chezmoi init --apply`: chezmoi manages
-# dot_claude/settings.json -> ~/.claude/settings.json, so hooks merged in before
-# that point would be overwritten.
+# Note this only fires reliably on a fresh `chezmoi init --apply`. A later
+# `chezmoi apply` stops to ask about ~/.claude/settings.json, because this script
+# and Claude Code itself both write keys chezmoi's source copy does not have, so
+# chezmoi sees the target as externally modified. Re-run this script by hand
+# instead of reaching for `chezmoi apply --force`, which would drop those keys.
+#
+# Also safe to run standalone, to activate changes without a container rebuild:
+#
+#   bash ~/.dotfiles/run_after_wiki_setup.sh
+#
+# Every step is idempotent, and it always exits 0 — a failure here must not fail
+# `chezmoi apply`, which setup.sh runs under `set -e`.
 
 set -uo pipefail
 
-DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Codespaces only: /workspaces does not exist on a personal machine, and a
+# `chezmoi apply` there must not try to clone a wiki into it.
+if [ -z "${CODESPACES:-}" ]; then
+  exit 0
+fi
+
+# chezmoi extracts scripts to a temp file before running them, so BASH_SOURCE
+# does not point at the dotfiles clone. setup.sh symlinks it to ~/.dotfiles; fall
+# back to BASH_SOURCE for a standalone run from a checkout without that symlink.
+if [ -d "$HOME/.dotfiles" ]; then
+  DOTFILES_DIR="$(cd -P "$HOME/.dotfiles" && pwd)"
+else
+  DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+fi
 CLAUDE_SETTINGS=~/.claude/settings.json
 WIKI=/workspaces/wiki
 
@@ -66,7 +89,7 @@ else
 
   if [ -d "$WIKI/.git" ]; then
     set_cred_helper "$WIKI" "$WIKI_CRED_HELPER"
-    git -C "$WIKI" pull --rebase --autostash --quiet || true
+    timeout 10s git -C "$WIKI" pull --rebase --autostash --quiet || true
 
     # Skill symlinked out of the wiki repo, so the procedures are versioned with
     # the wiki they operate on.
