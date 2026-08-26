@@ -153,8 +153,10 @@ exports the same path. Keep those two in step.
 - **Any stray file in the clone root becomes a `$HOME` target.** chezmoi honours
   `.chezmoiignore`, not `.gitignore`, so a gitignored build artifact left here is
   still applied. `lazygit` and `lazygit.tar.gz` (26MB) sat here for that reason and
-  are now ignored explicitly, mirroring `.gitignore`. Patterns match *target*
-  paths, so anchor them with a leading `/` unless you mean every directory level.
+  are now ignored explicitly. Patterns match *target* paths and follow gitignore
+  syntax with one exception: a leading `/` is rejected outright as `invalid path`,
+  since patterns are already relative to the target root. A name with no slash in
+  it therefore matches at every directory level, and cannot be anchored to the root.
 
 ## Possible improvements
 
