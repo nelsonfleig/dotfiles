@@ -1,3 +1,5 @@
 CLAUDE.md
 .config/**/lazy-lock.json
 setup.sh
+/lazygit
+/lazygit.tar.gz

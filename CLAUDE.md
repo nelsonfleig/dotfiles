@@ -150,6 +150,11 @@ exports the same path. Keep those two in step.
   it drifts freely. Fine today, since nothing here reads it.
 - **The merge scripts need `python3`.** Without it they fall back to writing the
   desired content alone — i.e. the old clobbering behaviour.
+- **Any stray file in the clone root becomes a `$HOME` target.** chezmoi honours
+  `.chezmoiignore`, not `.gitignore`, so a gitignored build artifact left here is
+  still applied. `lazygit` and `lazygit.tar.gz` (26MB) sat here for that reason and
+  are now ignored explicitly, mirroring `.gitignore`. Patterns match *target*
+  paths, so anchor them with a leading `/` unless you mean every directory level.
 
 ## Possible improvements
 
