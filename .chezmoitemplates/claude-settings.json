@@ -31,6 +31,10 @@
   "appendSystemPrompt": "CRITICAL: Always prefer single-line shell commands. Avoid using newlines or line continuations in Bash tool calls to prevent permission prompts. If a task requires complex logic or multiple steps, do not send a multi-line Bash command; instead, write the logic to a temporary script file (.sh, .js, or .py — whichever is most appropriate for the task) and then execute that file.",
   "editorMode": "vim",
   "skipAutoPermissionPrompt": true,
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
   "extraKnownMarketplaces": {
     "rover-plugins": {
       "source": {

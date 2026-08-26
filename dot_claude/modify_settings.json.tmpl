@@ -1,0 +1,54 @@
+#!/bin/sh
+# chezmoi `modify_` script: the current ~/.claude/settings.json arrives on stdin,
+# the new contents go to stdout.
+#
+# A modify_ script rather than a plain managed file because Claude Code writes
+# keys into this file itself (`tui`), and run_after_wiki_setup.sh adds `hooks`.
+# As a plain managed file, chezmoi saw the target as externally modified and
+# prompted on every apply -- which aborts a non-interactive `chezmoi init --apply`
+# before the run_after scripts ever run. modify_ scripts are not state-compared,
+# so they always apply cleanly.
+#
+# The desired settings live in .chezmoitemplates/claude-settings.json, inlined
+# below at apply time. Merge rules: those keys win, nested objects merge
+# recursively, and arrays are unioned, so anything Claude Code adds at runtime
+# survives an apply instead of being reverted.
+set -eu
+
+DESIRED=$(cat <<'CHEZMOI_JSON'
+{{ includeTemplate "claude-settings.json" . -}}
+CHEZMOI_JSON
+)
+
+# Without python3 there is no safe merge, so fall back to writing the desired
+# content alone -- the same result a plain managed file used to give.
+if ! command -v python3 >/dev/null 2>&1; then
+  printf '%s\n' "$DESIRED"
+  exit 0
+fi
+
+DESIRED="$DESIRED" exec python3 -c '
+import json, os, sys
+
+desired = json.loads(os.environ["DESIRED"])
+raw = sys.stdin.read().strip()
+try:
+    live = json.loads(raw) if raw else {}
+except ValueError:
+    live = {}
+
+
+def merge(live, desired):
+    if isinstance(live, dict) and isinstance(desired, dict):
+        out = dict(live)
+        for key, value in desired.items():
+            out[key] = merge(live[key], value) if key in live else value
+        return out
+    if isinstance(live, list) and isinstance(desired, list):
+        return desired + [item for item in live if item not in desired]
+    return desired
+
+
+json.dump(merge(live, desired), sys.stdout, indent=2, ensure_ascii=False)
+sys.stdout.write("\n")
+'
