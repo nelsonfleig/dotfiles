@@ -76,12 +76,43 @@ is already on disk:
 
 Both are idempotent: applying twice changes nothing the second time.
 
+### Two clones, and which one chezmoi actually reads
+
+There are two clones of this repo on a Codespace, and they are *not* the same directory:
+
+| Path | What it is |
+|---|---|
+| `/workspaces/.codespaces/.persistedshare/dotfiles` | What Codespaces clones from the dotfiles setting, what `~/.dotfiles` symlinks to, and where you edit and push |
+| `~/.local/share/chezmoi` | chezmoi's own source dir, created by `chezmoi init` in `setup.sh`. Same remote |
+
+**A bare `chezmoi apply` reads the second one.** So editing a file here and running
+`chezmoi apply` applies the *old* committed content and silently reverts your edit — and a
+bare `chezmoi apply --dry-run` is checking a tree you may not have touched. Confirm with
+`chezmoi source-path` and `git -C ~/.local/share/chezmoi log --oneline -1` before trusting
+a result.
+
 ### Editing these two files
+
+To test an uncommitted edit, point chezmoi at this clone explicitly:
 
 ```sh
 $EDITOR .chezmoitemplates/zshrc       # or .chezmoitemplates/claude-settings.json
-chezmoi apply ~/.zshrc
+chezmoi apply --source . --no-tty ~/.zshrc
 ```
+
+To roll a committed change out to the live files, push it and let chezmoi pull:
+
+```sh
+git commit -am 'why' && git push
+chezmoi update --no-tty               # git pull in its own clone, then apply
+```
+
+`chezmoi update` also re-runs every `run_after_` hook, which makes it the closest rehearsal
+of a rebuild you can get without rebuilding.
+
+Do not hand-install a target with `install -m 755` to preview it. chezmoi compares the mode
+too, so 0755 against its own 0775 umask registers as an external modification and
+reintroduces the prompt on the next apply. Use `chezmoi apply --source .` instead.
 
 **Do not run `chezmoi add ~/.zshrc`.** It prompts `adding .zshrc would remove
 template attribute` and, if confirmed, replaces the `modify_` script with a plain
