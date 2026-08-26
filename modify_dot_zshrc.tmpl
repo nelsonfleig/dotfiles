@@ -1,0 +1,29 @@
+#!/bin/sh
+# chezmoi `modify_` script: the current ~/.zshrc arrives on stdin, the new
+# contents go to stdout.
+#
+# A modify_ script rather than a plain managed file because the web repo's
+# scripts/refresh-secrets.sh strips and re-appends its own block to ~/.zshrc on
+# every run. As a plain managed file, chezmoi then saw the target as externally
+# modified and prompted on every apply -- which is a hard error without a TTY,
+# and aborts `chezmoi init --apply` before the run_after scripts run.
+#
+# So: emit the canonical zshrc from .chezmoitemplates/zshrc, then re-append
+# refresh-secrets' block if the file on disk had one. Edit the zshrc itself at
+# .chezmoitemplates/zshrc -- this script only wraps it.
+set -eu
+
+# Must stay byte-identical to the marker refresh-secrets writes.
+MARKER="# MANAGED BY refresh-secrets: host-shell OTel gateway creds (DO NOT EDIT)"
+
+live=$(cat)
+
+cat <<'CHEZMOI_ZSHRC'
+{{ includeTemplate "zshrc" . -}}
+CHEZMOI_ZSHRC
+
+# The block is the marker plus the single source line that follows it.
+block=$(printf '%s\n' "$live" | grep -F -x -A1 "$MARKER" || true)
+if [ -n "$block" ]; then
+  printf '\n%s\n' "$block"
+fi
