@@ -158,6 +158,36 @@ exports the same path. Keep those two in step.
   since patterns are already relative to the target root. A name with no slash in
   it therefore matches at every directory level, and cannot be anchored to the root.
 
+## macOS vs Codespaces
+
+One repo serves both machines, so every change here reaches the laptop too. Four hooks are
+guarded, and on macOS they are all no-ops — none of these are failures:
+
+| Guard | Not done on macOS | Consequence |
+|---|---|---|
+| `CODESPACES` | Wiki clone + Claude hooks (`run_after_wiki_setup.sh`) | Deliberate: the wiki is Codespaces-only |
+| `CODESPACES` | tmux plugins (`run_after_source_zsh.sh`) | Run `~/.config/tmux/plugins/tpm/bin/install_plugins` by hand |
+| `CODESPACES` | nvim plugin preinstall | First `nvim` launch syncs Lazy itself |
+| `uname == Linux` | fzf (`run_once_after_fzf_install.sh`) | Install via Homebrew for fzf-backed zoxide (`zi`) |
+
+Both `CODESPACES` guards read `${CODESPACES}` with no `:-`, which would be an unbound-variable
+error under `set -u`. Neither script sets it, so the guard holds — but don't add `set -u` to
+them without fixing the expansions.
+
+**Never set `CODESPACES` on the laptop to switch the wiki on.** Three hooks share that
+variable, so tmux and nvim installs would fire as a side effect. If the wiki is ever wanted
+locally it gets its own variable; `CODESPACES` means "this is a codespace" and nothing else.
+
+**The one real macOS hazard is `python3`.** Both `modify_` scripts fall back to writing their
+managed content *alone* when it is missing, which silently drops every key the third party
+owns — `tui` and any local `hooks` in `settings.json`, refresh-secrets' block in `.zshrc`.
+macOS ships no `python3` until Xcode CLT or Homebrew provides one, so check
+`command -v python3` before the first apply on a fresh laptop.
+
+Also note `export SHELL=/usr/bin/zsh` sits inside the Codespaces `elif` in
+`.chezmoitemplates/zshrc`, so macOS correctly keeps `/bin/zsh`. And `verify_rebuild.sh`
+assumes Codespaces throughout — its failures on a laptop would describe correct behaviour.
+
 ## Possible improvements
 
 Roughly in order of value:
