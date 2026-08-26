@@ -9,7 +9,7 @@
 #
 # The hooks this script adds then survive later applies, because that file is
 # managed by dot_claude/modify_settings.json.tmpl, which merges over whatever is
-# already on disk rather than replacing it. See AGENTS.md.
+# already on disk rather than replacing it. See CLAUDE.md.
 #
 # Also safe to run standalone, to activate changes without a container rebuild:
 #

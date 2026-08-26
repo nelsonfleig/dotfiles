@@ -1,4 +1,4 @@
-# AGENTS.md
+# Dotfiles (chezmoi source)
 
 Notes for coding agents working in this repo. Humans are welcome to read it too,
 but it exists to answer the things that are not obvious from the file tree.
@@ -26,7 +26,7 @@ is named for decoration:
 Two consequences worth internalising:
 
 - **Anything at the root without a prefix becomes a target in `$HOME`.** A stray
-  `notes.md` here would be applied to `~/notes.md`. That is why `AGENTS.md` and
+  `notes.md` here would be applied to `~/notes.md`. That is why `CLAUDE.md` and
   `setup.sh` are listed in `.chezmoiignore`. Entries starting with `.` are exempt —
   chezmoi ignores them — which is how `.gitignore` and `.git` sit here safely.
 - **Source paths are not target paths.** `.chezmoiignore` patterns match the
