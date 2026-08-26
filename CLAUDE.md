@@ -158,6 +158,42 @@ exports the same path. Keep those two in step.
   since patterns are already relative to the target root. A name with no slash in
   it therefore matches at every directory level, and cannot be anchored to the root.
 
+## The status line wraps the org's, it does not replace it
+
+Rover ships `statusLine` in `/etc/claude-code/managed-settings.json`, pointing at
+`/etc/claude-code/statusline-command.sh`. That script's first act is:
+
+```bash
+for USER_SCRIPT in "$HOME/.claude/statusline.sh" "$HOME/.claude/statusline-command.sh"; do
+    if [ -f "$USER_SCRIPT" ]; then exec bash "$USER_SCRIPT"; fi
+done
+```
+
+So `~/.claude/statusline.sh` is the org's own override hook, and simply creating it takes
+over the *entire* status line — the context bar, token count, model, effort and cost all
+disappear with it. That is what happened when this file was first added.
+
+`dot_claude/executable_statusline.sh` therefore delegates back rather than reimplementing:
+it runs the org script with `HOME=/nonexistent`, so the `[ -f ... ]` test above fails, the
+delegation falls through, and the org's own rendering runs. Its output is then prefixed with
+the git branch. Nothing is copied, so upstream changes to the bar or cost flow through.
+
+Two consequences worth knowing:
+
+- **Never call the org script without overriding `HOME`** — it would `exec` straight back
+  into this script, forever.
+- If the org script ever starts reading real config out of `$HOME`, that override would
+  hide it. It only uses `$HOME` for the delegation test today, and `TMPDIR` for its cache.
+
+The fallback path (`basename $dir | model`) covers a machine with no org script, and also
+catches the org script failing — e.g. its context-bar arithmetic divides by
+`.context_window.context_window_size`, so an input without that field makes it exit
+non-zero and we render the short form instead of nothing.
+
+`statusLine` is also set in `.chezmoitemplates/claude-settings.json`. That is a deliberate
+duplicate: managed settings win where they exist, but on a machine without them it is what
+points Claude Code at this script.
+
 ## macOS vs Codespaces
 
 One repo serves both machines, so every change here reaches the laptop too. Four hooks are
