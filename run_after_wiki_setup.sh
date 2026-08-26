@@ -35,6 +35,7 @@ else
   DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 fi
 CLAUDE_SETTINGS=~/.claude/settings.json
+CLAUDE_MD=~/.claude/CLAUDE.md
 WIKI=/workspaces/wiki
 
 mkdir -p ~/.claude
@@ -94,12 +95,18 @@ else
     rm -rf "$HOME/.claude/skills/llm-wiki"
     ln -s "$WIKI/.claude/skills/llm-wiki" "$HOME/.claude/skills/llm-wiki"
 
-    # Load the wiki schema into every session in the web repo only.
-    # CLAUDE.local.md is already gitignored by web (.gitignore), so this leaves no
-    # diff in the shared repo. The import resolves outside the working directory,
+    # Load the wiki schema into every session, whatever repo it is in. The skill
+    # and the sync hooks are already user-level, so scoping the operating rules to
+    # the web repo alone was the odd one out: in any other repo the wiki's rules
+    # only reached the context once the skill happened to fire.
+    #
+    # Appended here rather than managed by chezmoi because Claude Code's own `#`
+    # memory shortcut writes to this same file — the reason the hooks above are
+    # added by this script too. The import resolves outside the working directory,
     # so Claude Code asks for approval the first time — accept it once.
-    if [ -d /workspaces/web ] && ! grep -q '@/workspaces/wiki/WIKI.md' /workspaces/web/CLAUDE.local.md 2>/dev/null; then
-      printf '# Personal\n\n@/workspaces/wiki/WIKI.md\n' >> /workspaces/web/CLAUDE.local.md
+    if ! grep -q '@/workspaces/wiki/WIKI.md' "$CLAUDE_MD" 2>/dev/null; then
+      [ -s "$CLAUDE_MD" ] && printf '\n' >> "$CLAUDE_MD"
+      printf '## Research wiki\n\n@/workspaces/wiki/WIKI.md\n' >> "$CLAUDE_MD"
     fi
 
     # SessionStart pulls the wiki and reports its state; Stop commits and pushes

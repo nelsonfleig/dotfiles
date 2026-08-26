@@ -111,7 +111,7 @@ Downloads go through `mktemp -d` with an EXIT trap; clones go through
 
 | Script | Does |
 |---|---|
-| `run_after_wiki_setup.sh` | Clones/updates the private research wiki at `/workspaces/wiki`, registers its Claude hooks, sets up push auth. Codespaces-only, always exits 0 |
+| `run_after_wiki_setup.sh` | Clones/updates the private research wiki at `/workspaces/wiki`, registers its Claude hooks, imports its schema into `~/.claude/CLAUDE.md` so it loads in every repo, sets up push auth. Codespaces-only, always exits 0 |
 | `run_after_source_zsh.sh` | Installs tmux plugins via tpm. Codespaces-only |
 | `run_after_preinstall_nvim_plugins.sh` | Headless `Lazy! sync` + `TSUpdate` for nvim-nelson |
 | `run_once_after_fzf_install.sh` | Clones and installs fzf (needed by zoxide). Linux-only |
