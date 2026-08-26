@@ -3,16 +3,13 @@
 #
 # This is a chezmoi `run_after_` hook, so chezmoi runs it at the end of every
 # `chezmoi apply` / `chezmoi init --apply`. That ordering is the point: chezmoi
-# manages dot_claude/settings.json -> ~/.claude/settings.json, so wiki hooks
-# merged in before the apply would be overwritten by it. Making it a hook rather
-# than a call at the end of setup.sh means chezmoi enforces the ordering instead
-# of a comment in setup.sh.
+# writes ~/.claude/settings.json during the apply, so wiki hooks merged in before
+# it would be overwritten. Making this a hook rather than a call at the end of
+# setup.sh means chezmoi enforces the ordering instead of a comment doing it.
 #
-# Note this only fires reliably on a fresh `chezmoi init --apply`. A later
-# `chezmoi apply` stops to ask about ~/.claude/settings.json, because this script
-# and Claude Code itself both write keys chezmoi's source copy does not have, so
-# chezmoi sees the target as externally modified. Re-run this script by hand
-# instead of reaching for `chezmoi apply --force`, which would drop those keys.
+# The hooks this script adds then survive later applies, because that file is
+# managed by dot_claude/modify_settings.json.tmpl, which merges over whatever is
+# already on disk rather than replacing it. See AGENTS.md.
 #
 # Also safe to run standalone, to activate changes without a container rebuild:
 #

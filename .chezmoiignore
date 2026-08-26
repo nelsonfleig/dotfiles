@@ -1,2 +1,3 @@
-setup.sh
+AGENTS.md
 .config/**/lazy-lock.json
+setup.sh
