@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script should mainly be used by GitHub Codespaces owned by Rover.com
+# This script should mainly be used by Rover.com GitHub Codespaces and Coder workspaces
 
 # exit on error and print each command
 set -euxo pipefail
@@ -80,6 +80,12 @@ sudo install "$BUILD_DIR/tree-sitter" /usr/local/bin/
 # Install LSP servers for Claude Code
 npm i -g pyright
 npm i -g typescript-language-server typescript
+
+# Codespaces sets GITHUB_USER, Coder does not; the Coder owner name is the same
+# GitHub username.
+if [[ -n "${CODER_WORKSPACE_OWNER_NAME:-}" ]]; then
+  export GITHUB_USER="${GITHUB_USER:-$CODER_WORKSPACE_OWNER_NAME}"
+fi
 
 # Apply the dotfiles. This also runs the run_after_* hooks, one of which sets up
 # the personal research wiki -- see run_after_wiki_setup.sh.

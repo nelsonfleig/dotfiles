@@ -20,9 +20,9 @@
 
 set -uo pipefail
 
-# Codespaces only: /workspaces does not exist on a personal machine, and a
+# Codespaces and Coder only: /workspaces does not exist on a personal machine, and a
 # `chezmoi apply` there must not try to clone a wiki into it.
-if [ -z "${CODESPACES:-}" ]; then
+if [ -z "${CODESPACES:-}" ] && [ -z "${CODER_WORKSPACE_OWNER_NAME:-}" ]; then
   exit 0
 fi
 

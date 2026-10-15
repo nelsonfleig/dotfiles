@@ -16,10 +16,10 @@ preinstall_neovim_plugins() {
   # v "+Lazy! sync"
 }
 
-run_on_codespaces_only() {
-  if [ -n "${CODESPACES}" ]; then
+run_on_remote_only() {
+  if [ -n "${CODESPACES:-}" ] || [ -n "${CODER_WORKSPACE_OWNER_NAME:-}" ]; then
     preinstall_neovim_plugins
   fi
 }
 
-run_on_codespaces_only
+run_on_remote_only
