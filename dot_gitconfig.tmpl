@@ -1,6 +1,7 @@
 [user]
   name = Nelson Fleig
-{{- if ne .chezmoi.os "linux" }}
+{{- /* email lives in the machine's chezmoi.toml, kept out of this public repo. On Coder a `coder secret` writes that file; Codespaces supplies the email itself. */}}
+{{- if hasKey . "email" }}
   email = {{ .email }}
 {{- end }}
 [pull]
