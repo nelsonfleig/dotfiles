@@ -90,6 +90,9 @@ plugins=(
 	# zoxide
 )
 
+# Completion scripts (e.g. roverspace's). oh-my-zsh runs compinit, so this must come first.
+fpath+=~/.zfunc
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -263,10 +266,12 @@ cstunnel() {
 # Coder: the dev environment runs in the workspace's `devcontainer` agent, not `main`.
 CODER_WS=${CODER_WS:-nelson-roverspace}
 
+export ROVERSPACE_API=https://roverspaces-prod.dev-tools.roversvc.com/
+# export ROVERSPACE_API=https://roverspaces.dev-tools.roversvc.com
+
+# roverspace handles the workspace lifecycle; ssh and port forwarding still go through coder.
 cwnew() {
-  local name="${1:-nelson-cw}" from
-  from=$(coder list -o json 2>/dev/null | jq -r '.[0].name // empty')
-  coder create "$name" -t web --yes ${from:+--copy-parameters-from "$from"}
+  roverspace create-workspace --template web --name "${1:-$CODER_WS}"
 }
 
 cwssh() {

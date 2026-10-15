@@ -1,0 +1,7 @@
+#compdef roverspace
+
+_roverspace_completion() {
+  eval $(env _TYPER_COMPLETE_ARGS="${words[1,$CURRENT]}" _ROVERSPACE_COMPLETE=complete_zsh roverspace)
+}
+
+compdef _roverspace_completion roverspace
