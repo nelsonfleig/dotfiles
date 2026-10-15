@@ -284,7 +284,14 @@ cwtunnel() {
   coder port-forward "$CODER_WS.devcontainer" $fwd
 }
 
-alias cwpf='coder port-forward "$CODER_WS.devcontainer" --tcp 8001'
+# Always forwards 8001; extra args are local:remote pairs, e.g. `cwpf 8081:8081`.
+cwpf() {
+  local p fwd=(--tcp 8001:8001)
+  for p in "$@"; do
+    [[ $p == 8001 || $p == 8001:8001 ]] || fwd+=(--tcp "$p")
+  done
+  coder port-forward "$CODER_WS.devcontainer" $fwd
+}
 #
 # zoxide: only override `cd` in interactive shells. Non-interactive shells
 # (Claude Code's shell snapshot, scripts) keep the real builtin `cd`, which
