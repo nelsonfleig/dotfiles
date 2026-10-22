@@ -1,7 +1,6 @@
 {
   "env": {
     "ENABLE_LSP_TOOL": "1",
-    "BASH_ENV": "~/.zshrc",
     "COLORTERM": "truecolor",
     "FORCE_COLOR": "3"
   },
