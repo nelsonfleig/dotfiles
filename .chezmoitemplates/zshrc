@@ -266,8 +266,8 @@ cstunnel() {
 # Coder: the dev environment runs in the workspace's `devcontainer` agent, not `main`.
 CODER_WS=${CODER_WS:-roverspace-nelson}
 
-export ROVERSPACE_API=https://roverspaces-prod.dev-tools.roversvc.com/
-# export ROVERSPACE_API=https://roverspaces.dev-tools.roversvc.com
+export ROVERSPACE_API=https://roverspaces.dev-tools.roversvc.com/
+# export ROVERSPACE_API=https://roverspaces-staging.dev-tools.roversvc.com/
 
 # roverspace handles the workspace lifecycle; ssh and port forwarding still go through coder.
 # roverspace prepends `roverspace-` to the name, so pass it without the prefix.
