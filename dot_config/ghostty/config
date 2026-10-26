@@ -17,3 +17,6 @@ cursor-style = block
 cursor-style-blink = true
 
 macos-option-as-alt = left
+
+link-url = true
+link-previews = true
