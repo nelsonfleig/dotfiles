@@ -1,0 +1,56 @@
+#!/bin/sh
+# chezmoi `modify_` script: the current ~/.config/herdr-app/settings.json
+# arrives on stdin, the new contents go to stdout.
+#
+# A modify_ script rather than a plain managed file because the Herdr app
+# writes this file itself (the zoom keys, the Settings screen). As a plain
+# managed file chezmoi would see it as externally modified and prompt, which
+# aborts a non-interactive apply. The keys below win; anything else Herdr has
+# written is kept.
+set -eu
+
+DESIRED=$(cat <<'CHEZMOI_JSON'
+{
+  "zoom": 1.2,
+  "sounds": {
+    "enabled": true
+  },
+  "font_ligatures": false,
+  "terminal_line_height": 1.0,
+  "terminal_cell_width": 1.0,
+  "terminal_scroll_speed": 1.0,
+  "minimum_contrast": 1.0,
+  "theme": "tokyo-night-night"
+}
+CHEZMOI_JSON
+)
+
+# Without python3 there is no safe merge, so write the desired content alone.
+if ! command -v python3 >/dev/null 2>&1; then
+  printf '%s\n' "$DESIRED"
+  exit 0
+fi
+
+DESIRED="$DESIRED" exec python3 -c '
+import json, os, sys
+
+desired = json.loads(os.environ["DESIRED"])
+raw = sys.stdin.read().strip()
+try:
+    live = json.loads(raw) if raw else {}
+except ValueError:
+    live = {}
+
+
+def merge(live, desired):
+    if isinstance(live, dict) and isinstance(desired, dict):
+        out = dict(live)
+        for key, value in desired.items():
+            out[key] = merge(live[key], value) if key in live else value
+        return out
+    return desired
+
+
+json.dump(merge(live, desired), sys.stdout, indent=2, ensure_ascii=False)
+sys.stdout.write("\n")
+'

@@ -39,7 +39,7 @@ Two consequences worth internalising:
   claude-settings.json   Desired ~/.claude/settings.json
   zshrc                  The actual zshrc — edit this, not a dot_zshrc
 dot_claude/            Claude Code config
-dot_config/            ghostty, tmux, nvim-nelson, nvim-rover
+dot_config/            ghostty, tmux, nvim-nelson, nvim-rover, herdr-app
 dot_gitconfig.tmpl     Templated: macOS-only sections are skipped on Linux
 dot_p10k.zsh           powerlevel10k prompt
 modify_dot_zshrc.tmpl  Script that emits ~/.zshrc
@@ -47,7 +47,7 @@ run_after_*.sh         Post-apply hooks
 setup.sh               One-shot bootstrap; chezmoiignored, never a target
 ```
 
-## The two `modify_` scripts, and why they exist
+## The `modify_` scripts, and why they exist
 
 `~/.zshrc` and `~/.claude/settings.json` are both written by *other* programs
 after chezmoi writes them:
@@ -73,8 +73,16 @@ is already on disk:
   and Claude Code's own keys survive an apply instead of being reverted.
 - `modify_dot_zshrc.tmpl` — emits `.chezmoitemplates/zshrc`, then re-appends
   refresh-secrets' block if the file on disk had one.
+- `dot_config/herdr-app/modify_settings.json` — the Herdr app writes its own
+  `settings.json` (zoom keys, the Settings screen), so it gets the same JSON
+  merge, with the desired keys inline. Herdr's layout and theme files under
+  `layouts/` and `themes/` are only written by hand, so they are plain managed
+  files. Everything else in `~/.config/herdr-app` (`AGENTS.md`, `*.d.ts`,
+  shipped layouts and mods, `layouts/.state/`, `view.json`) is rewritten by the
+  app and stays unmanaged. Which layout is shown is not in `settings.json`; pick
+  `tokyo` in Herdr's Settings on a new machine.
 
-Both are idempotent: applying twice changes nothing the second time.
+All are idempotent: applying twice changes nothing the second time.
 
 ### Two clones, and which one chezmoi actually reads
 
