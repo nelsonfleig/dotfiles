@@ -1,0 +1,34 @@
+#!/bin/sh
+# chezmoi `modify_` script: the current ~/.config/herdr-app/shared.json arrives
+# on stdin, the new contents go to stdout.
+#
+# shared.json is Herdr's shared mod state, and its "layout" key is the layout
+# the window shows at start. Pinning only that key makes every machine open on
+# the tokyo layout while leaving the rest of the state Herdr and its mods keep
+# here alone. A running Herdr does not re-read this file, so
+# run_after_herdr_layout.sh switches an open window to match.
+#
+# Unparseable input, or no python3, passes through untouched: Herdr sets a
+# corrupt file aside itself, and clobbering it would lose mod state.
+set -eu
+
+if ! command -v python3 >/dev/null 2>&1; then
+  exec cat
+fi
+
+exec python3 -c '
+import json, sys
+
+raw = sys.stdin.read()
+try:
+    live = json.loads(raw) if raw.strip() else {}
+except ValueError:
+    sys.stdout.write(raw)
+    sys.exit(0)
+if not isinstance(live, dict):
+    sys.stdout.write(raw)
+    sys.exit(0)
+
+live["layout"] = "tokyo"
+json.dump(live, sys.stdout, separators=(",", ":"), ensure_ascii=False)
+'

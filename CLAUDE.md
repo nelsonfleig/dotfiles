@@ -79,8 +79,11 @@ is already on disk:
   `layouts/` and `themes/` are only written by hand, so they are plain managed
   files. Everything else in `~/.config/herdr-app` (`AGENTS.md`, `*.d.ts`,
   shipped layouts and mods, `layouts/.state/`, `view.json`) is rewritten by the
-  app and stays unmanaged. Which layout is shown is not in `settings.json`; pick
-  `tokyo` in Herdr's Settings on a new machine.
+  app and stays unmanaged.
+- `dot_config/herdr-app/modify_shared.json` — pins only `"layout": "tokyo"` in
+  Herdr's shared mod state, which is where the shown layout lives. A running
+  Herdr never re-reads the file, so `run_after_herdr_layout.sh` switches an open
+  window too. Unparseable input passes through untouched.
 
 All are idempotent: applying twice changes nothing the second time.
 
@@ -154,6 +157,7 @@ Downloads go through `mktemp -d` with an EXIT trap; clones go through
 | `run_after_source_zsh.sh` | Installs tmux plugins via tpm. Codespaces-only |
 | `run_after_preinstall_nvim_plugins.sh` | Headless `Lazy! sync` + `TSUpdate` for nvim-nelson |
 | `run_once_after_fzf_install.sh` | Clones and installs fzf (needed by zoxide). Linux-only |
+| `run_after_herdr_layout.sh` | Switches an open Herdr window to the `tokyo` layout. No-op without `herdr-app` or an open window |
 
 Anything a `run_after_` script does must be idempotent and must not fail the
 apply — `setup.sh` runs `chezmoi init --apply` under `set -e`.
