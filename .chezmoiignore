@@ -5,6 +5,7 @@ lazygit
 lazygit.tar.gz
 verify_rebuild.sh
 {{ if eq .chezmoi.os "darwin" }}
-# The Mac keeps its own unmanaged ~/.zshenv (cargo, nvm).
+# The Mac keeps its own unmanaged ~/.zshenv and ~/.profile.
 .zshenv
+.profile
 {{ end }}

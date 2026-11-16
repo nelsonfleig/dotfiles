@@ -1,0 +1,13 @@
+#!/bin/sh
+# Keeps the image's ~/.profile and appends the block below, which Herdr's core
+# needs: it reads its login environment from `sh -l`, which never reads a zsh file.
+begin='# >>> dotfiles: login shell >>>'
+end='# <<< dotfiles: login shell <<<'
+sed "/^$begin\$/,/^$end\$/d"
+cat <<BLOCK
+$begin
+if [ -n "\${CODESPACES:-}" ] || [ -n "\${CODER_WORKSPACE_OWNER_NAME:-}" ]; then
+  export SHELL=/usr/bin/zsh
+fi
+$end
+BLOCK
