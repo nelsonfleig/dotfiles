@@ -219,7 +219,6 @@ elif [ -n "${CODESPACES}" ] || [ -n "${CODER_WORKSPACE_OWNER_NAME}" ]; then
   # Local tmux is unable to set TERM in the CS shell so we do it manually
   export TERM=tmux-256color
   export WORKSPACE=${WORKSPACE:-'/workspaces/web'}
-  export SHELL=/usr/bin/zsh
   export _ZO_DOCTOR=0
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
   source ~/.fzf/shell/completion.zsh

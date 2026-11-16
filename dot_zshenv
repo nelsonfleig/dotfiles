@@ -1,0 +1,5 @@
+# zsh reads this for every shell, including the non-interactive `zsh -c` that ssh
+# and Herdr's core start from; the devcontainer image sets SHELL=/bin/bash.
+if [ -n "${CODESPACES:-}" ] || [ -n "${CODER_WORKSPACE_OWNER_NAME:-}" ]; then
+  export SHELL=/usr/bin/zsh
+fi

@@ -175,8 +175,12 @@ back to `BASH_SOURCE` for a standalone run from a checkout.
 anything shelling out to it — would start unconfigured. `nvim-rover` (via `vr`) is
 a WIP minimal config for Rover work.
 
-`setup.sh` runs `chsh` with `/usr/bin/zsh` and the Codespaces branch of the zshrc
-exports the same path. Keep those two in step.
+`setup.sh` runs `chsh` with `/usr/bin/zsh`, and `dot_zshenv` exports the same path
+as `SHELL` on Codespaces and Coder. Keep those two in step. The export lives in
+`~/.zshenv`, not the zshrc, because the devcontainer image sets `SHELL=/bin/bash`
+and programs started over ssh (Herdr's core) run in a non-interactive `zsh -c`
+that never reads `~/.zshrc`. `.zshenv` is chezmoiignored on macOS, whose own
+`~/.zshenv` stays unmanaged.
 
 ## Known warts
 
