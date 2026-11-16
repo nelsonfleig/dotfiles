@@ -5,7 +5,9 @@ lazygit
 lazygit.tar.gz
 verify_rebuild.sh
 {{ if eq .chezmoi.os "darwin" }}
-# The Mac keeps its own unmanaged ~/.zshenv and ~/.profile.
+# The Mac keeps its own unmanaged ~/.zshenv and ~/.profile, and Herdr's default
+# macOS login shell.
 .zshenv
 .profile
+.config/herdr-core/config.toml
 {{ end }}

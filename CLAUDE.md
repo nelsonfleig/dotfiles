@@ -175,8 +175,10 @@ back to `BASH_SOURCE` for a standalone run from a checkout.
 anything shelling out to it — would start unconfigured. `nvim-rover` (via `vr`) is
 a WIP minimal config for Rover work.
 
-`setup.sh` runs `chsh` with `/usr/bin/zsh`, and `dot_zshenv` and `modify_dot_profile`
-export the same path as `SHELL` on Codespaces and Coder. Keep all three in step. The
+`setup.sh` runs `chsh` with `/usr/bin/zsh`, `dot_zshenv` and `modify_dot_profile`
+export the same path as `SHELL` on Codespaces and Coder, and
+`dot_config/herdr-core/config.toml` sets it as Herdr's shell for new terminals there.
+Keep all four in step. The
 devcontainer image sets `SHELL=/bin/bash` (via `/var/run/coder/devcontainer-env.sh`),
 so the export can't live in the zshrc: commands over ssh run in a non-interactive
 `zsh -c` that reads only `~/.zshenv`, and Herdr's core takes its login environment,
