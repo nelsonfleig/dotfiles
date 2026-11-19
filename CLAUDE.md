@@ -77,7 +77,8 @@ is already on disk:
   `settings.json` (zoom keys, the Settings screen), so it gets the same JSON
   merge, with the desired keys inline. Herdr's layout and theme files under
   `layouts/` and `themes/` are only written by hand, so they are plain managed
-  files. Everything else in `~/.config/herdr-app` (`AGENTS.md`, `*.d.ts`,
+  files, and so is the personal `mods/machines` mod (⌘⇧M, bound in the unmanaged
+  `keys.json`). Everything else in `~/.config/herdr-app` (`AGENTS.md`, `*.d.ts`,
   shipped layouts and mods, `layouts/.state/`, `view.json`) is rewritten by the
   app and stays unmanaged.
 - `dot_config/herdr-app/modify_shared.json` — pins only `"layout": "tokyo"` in
