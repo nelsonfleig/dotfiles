@@ -28,14 +28,34 @@ vim.keymap.set('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit All' })
 -- Just don't use Q
 vim.keymap.set('n', 'Q', '<nop>')
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- Ctrl-hjkl moves between nvim splits; at the edge it hands off to the
+-- surrounding multiplexer (tmux via vim-tmux-navigator, or the Herdr app).
+vim.g.tmux_navigator_no_mappings = 1
+
+local function navigate(wincmd, direction, tmux_cmd)
+  return function()
+    if vim.env.TMUX then
+      return vim.cmd(tmux_cmd)
+    end
+    local before = vim.fn.winnr()
+    vim.cmd('wincmd ' .. wincmd)
+    if vim.fn.winnr() == before and vim.env.HC_TERMINAL_ID and vim.fn.executable('herdr-app') == 1 then
+      vim.system({ 'herdr-app', 'do', 'pane.go', '--direction', direction })
+    end
+  end
+end
+
+vim.keymap.set('n', '<C-h>', navigate('h', 'left', 'TmuxNavigateLeft'), { desc = 'Move focus left (window or pane)' })
+vim.keymap.set('n', '<C-j>', navigate('j', 'down', 'TmuxNavigateDown'), { desc = 'Move focus down (window or pane)' })
+vim.keymap.set('n', '<C-k>', navigate('k', 'up', 'TmuxNavigateUp'), { desc = 'Move focus up (window or pane)' })
+vim.keymap.set('n', '<C-l>', navigate('l', 'right', 'TmuxNavigateRight'), { desc = 'Move focus right (window or pane)' })
+vim.keymap.set('n', '<C-\\>', function()
+  if vim.env.TMUX then
+    vim.cmd('TmuxNavigatePrevious')
+  else
+    vim.cmd('wincmd p')
+  end
+end, { desc = 'Move focus to the previous window or pane' })
 
 -- Buffer Navigation
 vim.keymap.set('n', '[b', ':bprevious<CR>', { desc = 'Previous Buffer' })
