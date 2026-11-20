@@ -75,12 +75,18 @@ is already on disk:
   refresh-secrets' block if the file on disk had one.
 - `dot_config/herdr-app/modify_settings.json` — the Herdr app writes its own
   `settings.json` (zoom keys, the Settings screen), so it gets the same JSON
-  merge, with the desired keys inline. Herdr's layout and theme files under
-  `layouts/` and `themes/` are only written by hand, so they are plain managed
-  files, and so is the personal `mods/machines` mod (⌘⇧M, bound in the unmanaged
-  `keys.json`). Everything else in `~/.config/herdr-app` (`AGENTS.md`, `*.d.ts`,
-  shipped layouts and mods, `layouts/.state/`, `view.json`) is rewritten by the
-  app and stays unmanaged.
+  merge, with the desired keys inline. `dot_config/herdr-app/modify_keys.json`
+  does the same for `keys.json` (Settings → Keyboard writes it). It declares the
+  whole keymap, because an existing `keys.json` replaces Herdr's defaults.
+  Herdr's layout and theme files under `layouts/` and `themes/` are only written
+  by hand, so they are plain managed files, and so are the personal mods:
+  `machines` (⌘⇧M), `leader` (a tmux-style prefix on ⌥Space) and `vim-nav`
+  (⌃hjkl between panes, passed to nvim when it is in front; it only runs from the
+  0px `vim-nav` block in `tokyo.json`'s sidebar, so it needs that layout, and
+  `nvim-nelson`'s keymaps hand back to Herdr at a split edge). Everything else in
+  `~/.config/herdr-app` (`AGENTS.md`, `*.d.ts`, `jsconfig.json`, shipped layouts
+  and mods, `layouts/.state/`, `view.json`) is rewritten by the app and stays
+  unmanaged.
 - `dot_config/herdr-app/modify_shared.json` — pins only `"layout": "tokyo"` in
   Herdr's shared mod state, which is where the shown layout lives. A running
   Herdr never re-reads the file, so `run_after_herdr_layout.sh` switches an open

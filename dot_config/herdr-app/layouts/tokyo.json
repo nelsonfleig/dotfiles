@@ -61,6 +61,16 @@
           "size": {
             "px": 69
           }
+        },
+        {
+          "id": "vim-nav",
+          "type": "block",
+          "content": {
+            "mod": "vim-nav"
+          },
+          "size": {
+            "px": 0
+          }
         }
       ],
       "size": {
